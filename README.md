@@ -52,13 +52,13 @@ service: serverless-lambda-typescript-example
 
 ## Test the service locally
 
-**Invoke the Lambda function locally:** _This command requires Administrator privileges on Windows!_
+**To invoke the Lambda function locally, run:** _This command requires Administrator privileges on Windows!_
 
 ```
 serverless invoke local --function hello
 ```
 
-**Run the service locally:** _This command requires Administrator privileges on Windows!_
+**To run the service locally, run:** _This command requires Administrator privileges on Windows!_
 
 ```bash
 serverless offline start
@@ -68,13 +68,21 @@ This command will not terminate, but will keep running a webserver that you can 
 
 ## Deploy to AWS
 
-**Deploy the service to AWS:** _This command requires Administrator privileges on Windows!_
+**To deploy the service to AWS, run:** _This command requires Administrator privileges on Windows!_
 
 ```bash
 serverless deploy
 ```
 
 Verify that the deployment is completed successfully by opening the URL displayed in your console window in your browser. To see all resources created in AWS navigate to CloudFormation in the AWS Console and look for the stack named with the name of your service you specified in Step 6.
+
+## Run linter
+
+**To check your codebase with TSLint, run:**
+
+```bash
+npm run lint
+```
 
 ## Problems?
 

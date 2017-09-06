@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "A sample to create AWS Lambda functions in TypeScript with Serverless.",
   "main": "handler.js",
-  "scripts": {},
+  "scripts": {
+    "lint": "tslint --project . --format verbose"
+  },
   "keywords": [
     "aws",
     "lambda",
@@ -14,7 +16,8 @@
   "license": "MIT",
   "devDependencies": {
     "@types/aws-lambda": "0.0.16",
-    "serverless-offline": "^3.15.3",
-    "serverless-plugin-typescript": "^1.1.2"
+    "serverless-offline": "3.15.3",
+    "serverless-plugin-typescript": "1.1.2",
+    "tslint": "5.7.0"
   }
 }

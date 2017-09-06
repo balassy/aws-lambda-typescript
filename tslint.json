@@ -1,0 +1,9 @@
+{
+  "extends": "tslint:all",
+  "rules": {
+    "interface-name": [true, "never-prefix"],
+    "no-inferrable-types": false,
+    "quotemark": [true, "single"],
+    "trailing-comma": "never"
+  }
+}

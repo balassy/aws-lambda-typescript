@@ -1,19 +1,21 @@
-import { Handler, Context, Callback } from 'aws-lambda';
+import { Callback, Context, Handler } from 'aws-lambda';
+
+const HTTP_OK: number = 200;
 
 interface HelloResponse {
-  statusCode: number;
   body: string;
+  statusCode: number;
 }
 
-const hello: Handler = (event: any, context: Context, callback: Callback) => {
+const hello: Handler = (event: {}, context: Context, callback: Callback): void => {
   const response: HelloResponse = {
-    statusCode: 200,
     body: JSON.stringify({
-      message: Math.floor(Math.random() * 10)
-    })
+      message: Math.floor(Math.random())
+    }),
+    statusCode: HTTP_OK
   };
 
   callback(undefined, response);
 };
 
-export { hello }
+export { hello };
