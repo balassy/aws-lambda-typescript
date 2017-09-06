@@ -64,7 +64,15 @@ serverless invoke local --function hello
 serverless offline start
 ```
 
+or you can use the NPM script alias:
+
+```bash
+npm start
+```
+
 This command will not terminate, but will keep running a webserver that you can use to locally test your service. Verify that the service runs perfectly by opening the `http://localhost:3000/hello` URL in your browser. The console window will log your requests.
+
+You can modify your code after running this command, Serverless will automatically recognize the changes and recompile your code.
 
 ## Deploy to AWS
 
@@ -72,6 +80,12 @@ This command will not terminate, but will keep running a webserver that you can 
 
 ```bash
 serverless deploy
+```
+
+or you can use the NPM script alias, which is recommended, because it runs the linter before deployment:
+
+```bash
+npm run deploy
 ```
 
 Verify that the deployment is completed successfully by opening the URL displayed in your console window in your browser. To see all resources created in AWS navigate to CloudFormation in the AWS Console and look for the stack named with the name of your service you specified in Step 6.

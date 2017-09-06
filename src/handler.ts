@@ -10,7 +10,7 @@ interface HelloResponse {
 const hello: Handler = (event: {}, context: Context, callback: Callback): void => {
   const response: HelloResponse = {
     body: JSON.stringify({
-      message: Math.floor(Math.random())
+      message: Math.random()
     }),
     statusCode: HTTP_OK
   };

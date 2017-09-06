@@ -4,13 +4,17 @@
   "description": "A sample to create AWS Lambda functions in TypeScript with Serverless.",
   "main": "handler.js",
   "scripts": {
-    "lint": "tslint --project . --format verbose"
+    "predeploy": "npm run lint",
+    "deploy": "serverless deploy",
+    "lint": "tslint --project . --format verbose",
+    "start": "serverless offline start"
   },
   "keywords": [
     "aws",
     "lambda",
-    "typescript",
-    "serverless"
+    "serverless",
+    "tslint",
+    "typescript"
   ],
   "author": "György Balássy",
   "license": "MIT",
