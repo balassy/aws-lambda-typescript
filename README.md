@@ -14,7 +14,9 @@ npm install serverless -g
 
 Verify that Serverless was installed correctly:
 
-```serverless -v```
+```
+serverless -v
+```
 
 3. **Setup AWS credentials:**
 
@@ -48,11 +50,11 @@ npm install
 service: serverless-lambda-typescript-example
 ```
 
-## Testing the service locally
+## Test the service locally
 
 **Invoke the Lambda function locally:** _This command requires Administrator privileges on Windows!_
 
-```bash
+```
 serverless invoke local --function hello
 ```
 
@@ -76,7 +78,7 @@ Verify that the deployment is completed successfully by opening the URL displaye
 
 ## Problems?
 
-```bash
+```
 EPERM: operation not permitted, symlink 'C:\Git\lambda-typescript\node_modules' -> 'C:\Git\lambda-typescript\.build\node_modules'
 ```
 
