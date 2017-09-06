@@ -22,6 +22,9 @@ functions:
     handler: src/handler.hello
     description: A simple Lambda function callable through API Gateway.
 
+    environment:
+      FAVORITE_CITY: Budapest
+
     events:
       - http:
           path: hello

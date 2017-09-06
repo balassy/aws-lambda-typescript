@@ -8,6 +8,7 @@
     "no-object-literal-type-assertion": false,
     "promise-function-async": false,
     "quotemark": [true, "single"],
+    "strict-boolean-expressions": false,
     "trailing-comma": "never"
   }
 }

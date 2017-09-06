@@ -3,10 +3,13 @@ import { APIGatewayEvent, Context, ProxyCallback, ProxyHandler, ProxyResult } fr
 const HTTP_OK: number = 200;
 
 const hello: ProxyHandler = (event: APIGatewayEvent, context: Context, callback: ProxyCallback): void => {
+  const result: HelloResult = {
+    city: process.env.FAVORITE_CITY || '',
+    randomNumber: Math.random()
+  };
+
   const response: ProxyResult = {
-    body: JSON.stringify({
-      message: Math.random()
-    }),
+    body: JSON.stringify(result),
     statusCode: HTTP_OK
   };
 
@@ -14,3 +17,8 @@ const hello: ProxyHandler = (event: APIGatewayEvent, context: Context, callback:
 };
 
 export { hello };
+
+export interface HelloResult {
+  city: string;
+  randomNumber: number;
+}
