@@ -1,0 +1,28 @@
+service: serverless-lambda-typescript-example
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: demo  
+  region: us-east-1
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+package:
+  include:
+    src/**
+  exclude:
+    - node_modules/**/*
+    - src/**/*.ts
+
+functions:
+  hello:
+    handler: src/handler.hello
+    description: A simple Lambda function callable through API Gateway.
+
+    events:
+      - http:
+          path: hello
+          method: get
