@@ -2,7 +2,11 @@
   "extends": "tslint:all",
   "rules": {
     "interface-name": [true, "never-prefix"],
+    "linebreak-style": false,
+    "no-angle-bracket-type-assertion": false,
     "no-inferrable-types": false,
+    "no-object-literal-type-assertion": false,
+    "promise-function-async": false,
     "quotemark": [true, "single"],
     "trailing-comma": "never"
   }

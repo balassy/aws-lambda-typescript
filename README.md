@@ -82,13 +82,21 @@ You can modify your code after running this command, Serverless will automatical
 serverless deploy
 ```
 
-or you can use the NPM script alias, which is recommended, because it runs the linter before deployment:
+or you can use the NPM script alias, which is recommended, because it runs the analysers (linter + tests) before deployment:
 
 ```bash
 npm run deploy
 ```
 
 Verify that the deployment is completed successfully by opening the URL displayed in your console window in your browser. To see all resources created in AWS navigate to CloudFormation in the AWS Console and look for the stack named with the name of your service you specified in Step 6.
+
+If you don't want to deploy your code, just want to peek into the deployment package, you can run:
+
+```bash
+npm run pack
+```
+
+This command is not only an alias to `serverless package`, but also runs all analyzers that the deploy process runs.
 
 ## Run linter
 
@@ -97,6 +105,19 @@ Verify that the deployment is completed successfully by opening the URL displaye
 ```bash
 npm run lint
 ```
+
+The linter automatically checks your code before deployment, so you don't need to run it manually.
+
+## Run unit tests
+
+**To check your code with unit tests, run:**
+
+```
+npm test
+```
+
+The tests are automatically running before deployment, so you don't need to run them manually.
+
 
 ## Problems?
 

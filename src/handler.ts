@@ -1,14 +1,9 @@
-import { Callback, Context, Handler } from 'aws-lambda';
+import { APIGatewayEvent, Context, ProxyCallback, ProxyHandler, ProxyResult } from 'aws-lambda';
 
 const HTTP_OK: number = 200;
 
-interface HelloResponse {
-  body: string;
-  statusCode: number;
-}
-
-const hello: Handler = (event: {}, context: Context, callback: Callback): void => {
-  const response: HelloResponse = {
+const hello: ProxyHandler = (event: APIGatewayEvent, context: Context, callback: ProxyCallback): void => {
+  const response: ProxyResult = {
     body: JSON.stringify({
       message: Math.random()
     }),

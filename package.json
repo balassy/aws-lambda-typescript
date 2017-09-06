@@ -4,10 +4,14 @@
   "description": "A sample to create AWS Lambda functions in TypeScript with Serverless.",
   "main": "handler.js",
   "scripts": {
-    "predeploy": "npm run lint",
+    "analyse": "npm run lint && npm run test",
+    "predeploy": "npm run analyse",
     "deploy": "serverless deploy",
     "lint": "tslint --project . --format verbose",
-    "start": "serverless offline start"
+    "prepack": "npm run analyse",
+    "pack": "serverless package",
+    "start": "serverless offline start",
+    "test": "mocha -r ts-node/register src/**/*.spec.ts"
   },
   "keywords": [
     "aws",
@@ -20,8 +24,13 @@
   "license": "MIT",
   "devDependencies": {
     "@types/aws-lambda": "0.0.16",
+    "@types/chai": "4.0.4",
+    "@types/mocha": "2.2.42",
+    "chai": "4.1.2",
+    "mocha": "3.5.0",
     "serverless-offline": "3.15.3",
     "serverless-plugin-typescript": "1.1.2",
+    "ts-node": "3.3.0",
     "tslint": "5.7.0"
   }
 }
