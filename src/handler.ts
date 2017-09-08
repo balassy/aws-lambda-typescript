@@ -1,6 +1,5 @@
 import { APIGatewayEvent, Context, ProxyCallback, ProxyHandler, ProxyResult } from 'aws-lambda';
-
-const HTTP_OK: number = 200;
+import { HttpStatusCode } from '../shared/http-status-codes';
 
 const hello: ProxyHandler = (event: APIGatewayEvent, context: Context, callback: ProxyCallback): void => {
   const result: HelloResult = {
@@ -10,7 +9,7 @@ const hello: ProxyHandler = (event: APIGatewayEvent, context: Context, callback:
 
   const response: ProxyResult = {
     body: JSON.stringify(result),
-    statusCode: HTTP_OK
+    statusCode: HttpStatusCode.Ok
   };
 
   callback(undefined, response);

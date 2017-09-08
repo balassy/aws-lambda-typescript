@@ -29,3 +29,19 @@ functions:
       - http:
           path: hello
           method: get
+
+  getCity:
+    handler: src/cities/cities.getCity
+    description: Returns a single city.
+
+    environment:
+      FAVORITE_CITY: Budapest
+
+    events:
+      - http:
+          path: cities/{id}
+          method: get
+          request:
+            parameters:
+              paths:
+                id: true

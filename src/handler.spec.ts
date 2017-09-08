@@ -1,7 +1,8 @@
 import { expect } from 'chai';
 import { Chance } from 'chance';
 
-import { call, HTTP_OK, ProxyResultParsed } from '../test';
+import { HttpStatusCode } from '../shared/http-status-codes';
+import { call, ProxyResultParsed } from '../test';
 import { hello, HelloResult } from './handler';
 
 const chance: Chance.Chance = new Chance();
@@ -9,7 +10,7 @@ const chance: Chance.Chance = new Chance();
 describe('Hello function', () => {
   it('should return HTTP 200 OK', async () => {
     const result: ProxyResultParsed<HelloResult> = await call<HelloResult>(hello);
-    expect(result.statusCode).to.equal(HTTP_OK);
+    expect(result.statusCode).to.equal(HttpStatusCode.Ok);
   });
 
   it('should return the city from the environment variable', async () => {
