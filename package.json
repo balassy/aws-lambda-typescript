@@ -5,11 +5,11 @@
   "main": "handler.js",
   "scripts": {
     "analyse": "npm run lint && npm run test",
+    "prebuild": "npm run analyse",
+    "build": "serverless package",
     "predeploy": "npm run analyse",
     "deploy": "serverless deploy",
     "lint": "tslint --project . --format verbose",
-    "prepack": "npm run analyse",
-    "pack": "serverless package",
     "start": "serverless offline start",
     "test": "mocha -r ts-node/register src/**/*.spec.ts"
   },

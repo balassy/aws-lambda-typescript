@@ -93,10 +93,10 @@ Verify that the deployment is completed successfully by opening the URL displaye
 If you don't want to deploy your code, just want to peek into the deployment package, you can run:
 
 ```bash
-npm run pack
+npm run build
 ```
 
-This command is not only an alias to `serverless package`, but also runs all analyzers that the deploy process runs.
+This command is not only an alias to `serverless package`, but also runs all analyzers that the deploy process also runs.
 
 ## Run linter
 
