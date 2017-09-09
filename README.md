@@ -5,8 +5,13 @@ This sample uses the [Serverless Application Framework](https://serverless.com/)
 [![Build Status](https://travis-ci.org/balassy/aws-lambda-typescript.svg?branch=master)](https://travis-ci.org/balassy/aws-lambda-typescript)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/balassy/aws-lambda-typescript/master/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/balassy/aws-lambda-typescript.svg)](https://github.com/balassy/aws-lambda-typescript/issues)
+
 [![Dependencies](https://david-dm.org/balassy/aws-lambda-typescript/status.svg)](https://david-dm.org/balassy/aws-lambda-typescript)
 [![DevDependencies](https://david-dm.org/balassy/aws-lambda-typescript/dev-status.svg)](https://david-dm.org/balassy/aws-lambda-typescript#type=dev)
+[![bitHound Overall Score](https://www.bithound.io/github/balassy/aws-lambda-typescript/badges/score.svg)](https://www.bithound.io/github/balassy/aws-lambda-typescript)
+[![bitHound Dependencies](https://www.bithound.io/github/balassy/aws-lambda-typescript/badges/dependencies.svg)](https://www.bithound.io/github/balassy/aws-lambda-typescript/master/dependencies/npm)
+[![bitHound Dev Dependencies](https://www.bithound.io/github/balassy/aws-lambda-typescript/badges/devDependencies.svg)](https://www.bithound.io/github/balassy/aws-lambda-typescript/master/dependencies/npm)
+[![bitHound Code](https://www.bithound.io/github/balassy/aws-lambda-typescript/badges/code.svg)](https://www.bithound.io/github/balassy/aws-lambda-typescript)
 
 ## Setup
 
