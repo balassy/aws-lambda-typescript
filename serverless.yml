@@ -3,7 +3,7 @@ service: serverless-lambda-typescript-example
 provider:
   name: aws
   runtime: nodejs6.10
-  stage: demo  
+  stage: demo
   region: us-east-1
 
 plugins:
@@ -12,10 +12,9 @@ plugins:
 
 package:
   include:
-    src/**
+    src/**/!(*.spec).js
   exclude:
     - node_modules/**/*
-    - src/**/*.ts
 
 functions:
   getCity:
