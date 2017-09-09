@@ -113,6 +113,7 @@
         "lambda:UpdateAlias",
         "lambda:GetFunctionConfiguration",
         "lambda:AddPermission",
+        "lambda:RemovePermission",
         "lambda:InvokeFunction"
       ],
       "Resource": [
