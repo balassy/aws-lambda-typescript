@@ -4,5 +4,8 @@ node_js:
   - "lts/*"
   - "8"
 
+before_install:
+- npm install -g serverless
+
 script:
   - npm run build
