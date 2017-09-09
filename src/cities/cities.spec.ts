@@ -2,23 +2,24 @@ import { expect } from 'chai';
 import { Chance } from 'chance';
 
 import { HttpStatusCode } from '../../shared/http-status-codes';
-import { call, PathParameter, ProxyResultParsed } from '../../test';
+import { call } from '../../test';
+import { ApiResponseParsed, PathParameter } from '../../test/test.interfaces';
 import { getCity } from './cities';
-import { GetCityResponse } from './cities.interfaces';
+import { GetCityResult } from './cities.interfaces';
 
 const chance: Chance.Chance = new Chance();
 
 describe('Cities', () => {
   describe('getCity function', () => {
     it('should return HTTP 200 OK', async () => {
-      const result: ProxyResultParsed<GetCityResponse> = await call<GetCityResponse>(getCity);
+      const result: ApiResponseParsed<GetCityResult> = await call<GetCityResult>(getCity);
       expect(result.statusCode).to.equal(HttpStatusCode.Ok);
     });
 
     it('should return the city from the environment variable', async () => {
       const city: string = chance.city();
       process.env.FAVORITE_CITY = city;
-      const result: ProxyResultParsed<GetCityResponse> = await call<GetCityResponse>(getCity);
+      const result: ApiResponseParsed<GetCityResult> = await call<GetCityResult>(getCity);
       expect(result.parsedBody.city).to.equal(city);
     });
 
@@ -27,7 +28,7 @@ describe('Cities', () => {
       const pathParameters: PathParameter = {
         id: '' + id
       };
-      const result: ProxyResultParsed<GetCityResponse> = await call<GetCityResponse>(getCity, pathParameters);
+      const result: ApiResponseParsed<GetCityResult> = await call<GetCityResult>(getCity, pathParameters);
       expect(result.parsedBody.id).to.equal(id);
     });
   });

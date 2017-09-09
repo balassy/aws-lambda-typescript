@@ -1,4 +1,4 @@
-export interface GetCityResponse {
+export interface GetCityResult {
   city: string | undefined;
   id: number | undefined;
   randomNumber: number;

@@ -1,19 +1,19 @@
-import { APIGatewayEvent, Context, ProxyCallback, ProxyHandler, ProxyResult } from 'aws-lambda';
+import { ApiCallback, ApiContext, ApiEvent, ApiHandler } from '../../shared/api.interfaces';
+import { ResponseBuilder } from '../../shared/response-builder';
+import { GetCityResult } from './cities.interfaces';
 
-import { HttpStatusCode } from '../../shared/http-status-codes';
-import { GetCityResponse } from './cities.interfaces';
+export const getCity: ApiHandler = (event: ApiEvent, context: ApiContext, callback: ApiCallback): void => {
+  // Input validation.
+  if (event.pathParameters && event.pathParameters.id && +event.pathParameters.id < 0) {
+    ResponseBuilder.returnNotFound('INVALID_CITY_ID', 'There is no city with the specified ID!', callback);
+    return;
+  }
 
-export const getCity: ProxyHandler = (event: APIGatewayEvent, context: Context, callback: ProxyCallback): void => {
-  const response: GetCityResponse = {
+  const result: GetCityResult = {
     city: process.env.FAVORITE_CITY,
     id: event.pathParameters ? +event.pathParameters.id : undefined,
     randomNumber: Math.random()
   };
 
-  const result: ProxyResult = {
-    body: JSON.stringify(response),
-    statusCode: HttpStatusCode.Ok
-  };
-
-  callback(undefined, result);
+  ResponseBuilder.returnOk<GetCityResult>(result, callback);
 };
