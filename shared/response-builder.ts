@@ -19,7 +19,7 @@ export class ResponseBuilder {
       message
     };
 
-    ResponseBuilder._returnAs<ErrorResult>(errorResult, HttpStatusCode.Ok, callback);
+    ResponseBuilder._returnAs<ErrorResult>(errorResult, HttpStatusCode.NotFound, callback);
   }
 
   /**
