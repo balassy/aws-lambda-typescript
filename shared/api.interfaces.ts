@@ -6,8 +6,3 @@ export type ApiContext = Context;
 export type ApiEvent = APIGatewayEvent;
 export type ApiHandler = ProxyHandler;
 export type ApiResponse = ProxyResult;
-
-export interface ErrorResult {
-  code: string;
-  message: string;
-}

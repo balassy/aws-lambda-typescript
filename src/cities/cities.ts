@@ -1,19 +1,35 @@
 import { ApiCallback, ApiContext, ApiEvent, ApiHandler } from '../../shared/api.interfaces';
+import { ErrorCode } from '../../shared/error-codes';
+import { ErrorResult, ForbiddenResult, NotFoundResult } from '../../shared/errors';
 import { ResponseBuilder } from '../../shared/response-builder';
+import { CitiesController } from './cities.controller';
 import { GetCityResult } from './cities.interfaces';
 
 export const getCity: ApiHandler = (event: ApiEvent, context: ApiContext, callback: ApiCallback): void => {
   // Input validation.
-  if (event.pathParameters && event.pathParameters.id && +event.pathParameters.id < 0) {
-    ResponseBuilder.returnNotFound('INVALID_CITY_ID', 'There is no city with the specified ID!', callback);
-    return;
+  if (!event.pathParameters || !event.pathParameters.id) {
+    return ResponseBuilder.badRequest(ErrorCode.MissingId, 'Please specify the city ID!', callback);
   }
 
-  const result: GetCityResult = {
-    city: process.env.FAVORITE_CITY,
-    id: event.pathParameters ? +event.pathParameters.id : undefined,
-    randomNumber: Math.random()
-  };
+  if (isNaN(+event.pathParameters.id)) {
+    return ResponseBuilder.badRequest(ErrorCode.InvalidId, 'The city ID must be a number!', callback);
+  }
 
-  ResponseBuilder.returnOk<GetCityResult>(result, callback);
+  const id: number = +event.pathParameters.id;
+  const controller: CitiesController = new CitiesController(process.env);
+  controller.getCity(id)
+    .then((result: GetCityResult) => {
+      return ResponseBuilder.ok<GetCityResult>(result, callback);  // tslint:disable-line arrow-return-shorthand
+    })
+    .catch((error: ErrorResult) => {
+      if (error instanceof NotFoundResult) {
+        return ResponseBuilder.notFound(error.code, error.description, callback);
+      }
+
+      if (error instanceof ForbiddenResult) {
+        return ResponseBuilder.forbidden(error.code, error.description, callback);
+      }
+
+      return ResponseBuilder.internalServerError(error, callback);
+    });
 };

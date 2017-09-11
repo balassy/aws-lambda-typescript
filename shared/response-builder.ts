@@ -1,49 +1,37 @@
-import { ApiCallback, ApiResponse, ErrorResult } from './api.interfaces';
+import { ApiCallback, ApiResponse } from './api.interfaces';
+import { ErrorCode } from './error-codes';
+import { BadRequestResult, ForbiddenResult, InternalServerErrorResult, NotFoundResult } from './errors';
 import { HttpStatusCode } from './http-status-codes';
 
 /**
  * Contains helper methods to generate a HTTP response.
  */
 export class ResponseBuilder {
-  /**
-   * Returns a HTTP 404 Not Found response with the specified custom code and message in the reponse body as JSON.
-   * @static
-   * @param {string} code A computer-friendly custom error code.
-   * @param {string} message A human-friendly custom error message.
-   * @param {ApiCallback} callback The callback of the Lambda handler.
-   * @memberof ResponseBuilder
-   */
-  public static returnNotFound(code: string, message: string, callback: ApiCallback): void {
-    const errorResult: ErrorResult = {
-      code,
-      message
-    };
-
-    ResponseBuilder._returnAs<ErrorResult>(errorResult, HttpStatusCode.NotFound, callback);
+  public static badRequest(code: string, description: string, callback: ApiCallback): void {
+    const errorResult: BadRequestResult = new BadRequestResult(code, description);
+    ResponseBuilder._returnAs<BadRequestResult>(errorResult, HttpStatusCode.BadRequest, callback);
   }
 
-  /**
-   * Returns a HTTP 200 OK response with the specified response as JSON in the body.
-   * @static
-   * @template T The type of the data in the response body.
-   * @param {T} result The result data of the operation.
-   * @param {ApiCallback} callback The callback of the Lambda handler.
-   * @memberof ResponseBuilder
-   */
-  public static returnOk<T>(result: T, callback: ApiCallback): void {
+  public static forbidden(code: string, description: string, callback: ApiCallback): void {
+    const errorResult: ForbiddenResult = new ForbiddenResult(code, description);
+    ResponseBuilder._returnAs<ForbiddenResult>(errorResult, HttpStatusCode.Forbidden, callback);
+  }
+
+  public static internalServerError(error: Error, callback: ApiCallback): void {
+    // TODO: Implement stack trace logging.
+    const errorResult: InternalServerErrorResult = new InternalServerErrorResult(ErrorCode.GeneralError, 'Sorry...');
+    ResponseBuilder._returnAs<InternalServerErrorResult>(errorResult, HttpStatusCode.InternalServerError, callback);
+  }
+
+  public static notFound(code: string, description: string, callback: ApiCallback): void {
+    const errorResult: NotFoundResult = new NotFoundResult(code, description);
+    ResponseBuilder._returnAs<NotFoundResult>(errorResult, HttpStatusCode.NotFound, callback);
+  }
+
+  public static ok<T>(result: T, callback: ApiCallback): void {
     ResponseBuilder._returnAs<T>(result, HttpStatusCode.Ok, callback);
   }
 
-  /**
-   * Returns a HTTP response with the specified data in the body and the specified HTTP status code.
-   * @private
-   * @static
-   * @template T The type of the data in the response body.
-   * @param {T} result The result data of the operation.
-   * @param {number} statusCode The HTTP status code of the response.
-   * @param {ApiCallback} callback The callback of the Lambda handler.
-   * @memberof ResponseBuilder
-   */
   private static _returnAs<T>(result: T, statusCode: number, callback: ApiCallback): void {
     const response: ApiResponse = {
       body: JSON.stringify(result),
