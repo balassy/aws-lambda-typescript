@@ -34,7 +34,7 @@
     "@types/node": "8.0.28",
     "chai": "4.1.2",
     "chance": "1.0.11",
-    "mocha": "3.5.0",
+    "mocha": "3.5.2",
     "serverless-offline": "3.15.3",
     "serverless-plugin-typescript": "1.1.2",
     "ts-node": "3.3.0",
