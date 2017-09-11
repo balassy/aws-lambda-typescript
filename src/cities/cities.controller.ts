@@ -16,7 +16,7 @@ export class CitiesController {
       if (id === 666) {
         reject(new ForbiddenResult('PERMISSION_REQUIRED', 'You have no permission to access the city with the specified ID!'));
         return;
-    }
+      }
 
       const result: GetCityResult = {
         city: this._env.FAVORITE_CITY,
