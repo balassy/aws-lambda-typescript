@@ -5,13 +5,15 @@
   "main": "handler.js",
   "scripts": {
     "analyse": "npm run lint && npm run test",
-    "prebuild": "npm run analyse",
+    "clean": "rimraf .build .serverless .nyc_output coverage",
+    "prebuild": "npm run clean && npm run analyse",
     "build": "serverless package",
-    "predeploy": "npm run analyse",
+    "predeploy": "npm run clean && npm run analyse",
     "deploy": "serverless deploy",
     "lint": "tslint --project . --format verbose",
     "start": "serverless offline start",
-    "test": "mocha -r ts-node/register src/**/*.spec.ts"
+    "pretest": "npm run clean",
+    "test": "nyc mocha"
   },
   "keywords": [
     "aws",
@@ -35,8 +37,11 @@
     "chai": "4.1.2",
     "chance": "1.0.11",
     "mocha": "3.5.2",
+    "nyc": "11.2.1",
+    "rimraf": "2.6.2",
     "serverless-offline": "3.15.3",
     "serverless-plugin-typescript": "1.1.2",
+    "source-map-support": "0.4.18",
     "ts-node": "3.3.0",
     "tslint": "5.7.0"
   }

@@ -1,0 +1,25 @@
+{
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    "test/**/*",
+    "**/*.d.ts",
+    "**/*.spec.ts",
+    "**/*.interfaces.ts"
+  ],
+  "extension": [
+    ".ts"
+  ],
+  "require": [
+    "ts-node/register"
+  ],
+  "reporter": [
+    "text-summary",
+    "html",
+    "lcov"
+  ],
+  "sourceMap": true,
+  "instrument": true,
+  "all": true
+}
