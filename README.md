@@ -4,6 +4,7 @@ This sample uses the [Serverless Application Framework](https://serverless.com/)
 
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
 [![Build Status](https://travis-ci.org/balassy/aws-lambda-typescript.svg?branch=master)](https://travis-ci.org/balassy/aws-lambda-typescript)
+[![Coverage Status](https://coveralls.io/repos/github/balassy/aws-lambda-typescript/badge.svg)](https://coveralls.io/github/balassy/aws-lambda-typescript)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/balassy/aws-lambda-typescript/master/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/balassy/aws-lambda-typescript.svg)](https://github.com/balassy/aws-lambda-typescript/issues)
 
