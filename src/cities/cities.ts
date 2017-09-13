@@ -1,37 +1,11 @@
-import { ApiCallback, ApiContext, ApiEvent, ApiHandler } from '../../shared/api.interfaces';
-import { ErrorCode } from '../../shared/error-codes';
-import { ErrorResult, ForbiddenResult, NotFoundResult } from '../../shared/errors';
-import { ResponseBuilder } from '../../shared/response-builder';
+import { ApiHandler } from '../../shared/api.interfaces';
 import { CitiesController } from './cities.controller';
-import { GetCityResult } from './cities.interfaces';
+import { CitiesHandler } from './cities.handler';
 import { CitiesRepository } from './cities.repository';
 
-export const getCity: ApiHandler = (event: ApiEvent, context: ApiContext, callback: ApiCallback): void => {
-  // Input validation.
-  if (!event.pathParameters || !event.pathParameters.id) {
-    return ResponseBuilder.badRequest(ErrorCode.MissingId, 'Please specify the city ID!', callback);
-  }
+const repo: CitiesRepository = new CitiesRepository();
+const controller: CitiesController = new CitiesController(repo, process.env);
+const handler: CitiesHandler = new CitiesHandler(controller);
 
-  if (isNaN(+event.pathParameters.id)) {
-    return ResponseBuilder.badRequest(ErrorCode.InvalidId, 'The city ID must be a number!', callback);
-  }
+export const getCity: ApiHandler = handler.getCity;
 
-  const id: number = +event.pathParameters.id;
-  const repo: CitiesRepository = new CitiesRepository();
-  const controller: CitiesController = new CitiesController(repo, process.env);
-  controller.getCity(id)
-    .then((result: GetCityResult) => {
-      return ResponseBuilder.ok<GetCityResult>(result, callback);  // tslint:disable-line arrow-return-shorthand
-    })
-    .catch((error: ErrorResult) => {
-      if (error instanceof NotFoundResult) {
-        return ResponseBuilder.notFound(error.code, error.description, callback);
-      }
-
-      if (error instanceof ForbiddenResult) {
-        return ResponseBuilder.forbidden(error.code, error.description, callback);
-      }
-
-      return ResponseBuilder.internalServerError(error, callback);
-    });
-};
