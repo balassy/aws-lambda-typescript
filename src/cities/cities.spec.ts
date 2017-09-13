@@ -9,7 +9,7 @@ import { GetCityResult } from './cities.interfaces';
 
 const chance: Chance.Chance = new Chance();
 
-describe('Cities', () => {
+describe('Cities handler', () => {
   describe('getCity function', () => {
     describe('success', () => {
       it('should return HTTP 200 OK', async () => {

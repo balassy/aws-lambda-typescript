@@ -4,6 +4,7 @@ import { ErrorResult, ForbiddenResult, NotFoundResult } from '../../shared/error
 import { ResponseBuilder } from '../../shared/response-builder';
 import { CitiesController } from './cities.controller';
 import { GetCityResult } from './cities.interfaces';
+import { CitiesRepository } from './cities.repository';
 
 export const getCity: ApiHandler = (event: ApiEvent, context: ApiContext, callback: ApiCallback): void => {
   // Input validation.
@@ -16,7 +17,8 @@ export const getCity: ApiHandler = (event: ApiEvent, context: ApiContext, callba
   }
 
   const id: number = +event.pathParameters.id;
-  const controller: CitiesController = new CitiesController(process.env);
+  const repo: CitiesRepository = new CitiesRepository();
+  const controller: CitiesController = new CitiesController(repo, process.env);
   controller.getCity(id)
     .then((result: GetCityResult) => {
       return ResponseBuilder.ok<GetCityResult>(result, callback);  // tslint:disable-line arrow-return-shorthand
