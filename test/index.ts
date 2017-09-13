@@ -20,7 +20,6 @@ export const call: Caller = <T>(handler: ApiHandler, pathParameters?: PathParame
 
       const parsedResult: ApiResponseParsed<T> = result as ApiResponseParsed<T>;
       parsedResult.parsedBody = JSON.parse(result.body) as T;
-
       resolve(parsedResult);
     });
   });

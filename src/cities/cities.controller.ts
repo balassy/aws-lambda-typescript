@@ -1,30 +1,39 @@
-import { ForbiddenResult, NotFoundResult } from '../../shared/errors';
+import { ApiCallback, ApiContext, ApiEvent, ApiHandler } from '../../shared/api.interfaces';
+import { ErrorCode } from '../../shared/error-codes';
+import { ErrorResult, ForbiddenResult, NotFoundResult } from '../../shared/errors';
+import { ResponseBuilder } from '../../shared/response-builder';
 import { GetCityResult } from './cities.interfaces';
-import { CitiesRepository } from './cities.repository';
+import { CitiesService } from './cities.service';
 
 export class CitiesController {
-  public constructor(private _repo: CitiesRepository, private _env: NodeJS.ProcessEnv) {
+  public constructor(private _service: CitiesService) {
   }
 
-  public getCity(id: number): Promise<GetCityResult> {
-    return new Promise((resolve: (result: GetCityResult) => void, reject: (reason: NotFoundResult) => void): void => {
-      if (!this._repo.exists(id)) {
-          reject(new NotFoundResult('UNKNOWN_CITY', 'There is no city with the specified ID!'));
-          return;
-      }
+  public getCity: ApiHandler = (event: ApiEvent, context: ApiContext, callback: ApiCallback): void => {
+    // Input validation.
+    if (!event.pathParameters || !event.pathParameters.id) {
+      return ResponseBuilder.badRequest(ErrorCode.MissingId, 'Please specify the city ID!', callback);
+    }
 
-      if (!this._repo.hasAccess(id)) {
-        reject(new ForbiddenResult('PERMISSION_REQUIRED', 'You have no permission to access the city with the specified ID!'));
-        return;
-      }
+    if (isNaN(+event.pathParameters.id)) {
+      return ResponseBuilder.badRequest(ErrorCode.InvalidId, 'The city ID must be a number!', callback);
+    }
 
-      const result: GetCityResult = {
-        city: this._env.FAVORITE_CITY,
-        id,
-        randomNumber: Math.random()
-      };
+    const id: number = +event.pathParameters.id;
+    this._service.getCity(id)
+      .then((result: GetCityResult) => {
+        return ResponseBuilder.ok<GetCityResult>(result, callback);  // tslint:disable-line arrow-return-shorthand
+      })
+      .catch((error: ErrorResult) => {
+        if (error instanceof NotFoundResult) {
+          return ResponseBuilder.notFound(error.code, error.description, callback);
+        }
 
-      resolve(result);
-    });
+        if (error instanceof ForbiddenResult) {
+          return ResponseBuilder.forbidden(error.code, error.description, callback);
+        }
+
+        return ResponseBuilder.internalServerError(error, callback);
+      });
   }
 }

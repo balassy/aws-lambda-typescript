@@ -6,7 +6,8 @@
     "test/**/*",
     "**/*.d.ts",
     "**/*.spec.ts",
-    "**/*.interfaces.ts"
+    "**/*.interfaces.ts",
+    "src/cities/cities.ts"
   ],
   "extension": [
     ".ts"
