@@ -63,31 +63,45 @@ npm install
 service: serverless-lambda-typescript-example
 ```
 
-## Test the service locally
+## What you can find in the code
+
+This project shows an example Lambda function implementation with the following layers (see the `src/cities` folder):
+
+- **Handler**: The handler is the endpoint that is called by AWS when it executes your Lambda. See `cities.ts`.
+- **Controller**: The controller is responsible for transforming any operation result to an HTTP response. See `cities.controller.ts`.
+- **Service**: The service is responsible for implementing the business logic, and provide the operation result. See `cities.service.ts`.
+- **Repository**: The repository is responsible for providing the data for the service. See `cities.repository.ts`.
+
+ALl layers have unit tests mocking the underlying layers.
+
+Additional terms:
+
+- **Response**: The HTTP output for an endpoint call. It includes the HTTP status code, the response headers and the response body. The controller is responsible for building the response, using the `ResponseBuilder` helper class.
+- **Result**: The outcome of the service call. It can be a success result or an error result.
+
+To understand the code, open `src/cities/cities.ts`, find the `getCity` function and follow the call chain.
+
+## Developer tasks
+
+### Test the service locally
 
 **To invoke the Lambda function locally, run:** _This command requires Administrator privileges on Windows!_
 
 ```
-serverless invoke local --function hello
+serverless invoke local --function getCity
 ```
 
 **To run the service locally, run:** _This command requires Administrator privileges on Windows!_
 
 ```bash
-serverless offline start
-```
-
-or you can use the NPM script alias:
-
-```bash
 npm start
 ```
 
-This command will not terminate, but will keep running a webserver that you can use to locally test your service. Verify that the service runs perfectly by opening the `http://localhost:3000/hello` URL in your browser. The console window will log your requests.
+This command will not terminate, but will keep running a webserver that you can use to locally test your service. Verify that the service runs perfectly by opening the `http://localhost:3000` URL in your browser. The console window will log your requests.
 
 You can modify your code after running this command, Serverless will automatically recognize the changes and recompile your code.
 
-## Deploy to AWS
+### Deploy to AWS
 
 **To deploy the service to AWS, run:** _This command requires Administrator privileges on Windows!_
 
@@ -111,7 +125,7 @@ npm run build
 
 This command is not only an alias to `serverless package`, but also runs all analyzers that the deploy process also runs.
 
-## Run linter
+### Run linter
 
 **To check your codebase with TSLint, run:**
 
@@ -121,7 +135,7 @@ npm run lint
 
 The linter automatically checks your code before deployment, so you don't need to run it manually.
 
-## Run unit tests
+### Run unit tests
 
 **To check your code with unit tests, run:**
 
