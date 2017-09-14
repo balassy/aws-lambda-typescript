@@ -1,6 +1,6 @@
-import { ApiCallback, ApiResponse } from './api.interfaces';
+import { ApiCallback, ApiResponse, ErrorResponseBody } from './api.interfaces';
 import { ErrorCode } from './error-codes';
-import { BadRequestResult, ForbiddenResult, InternalServerErrorResult, NotFoundResult } from './errors';
+import { BadRequestResult, ErrorResult, ForbiddenResult, InternalServerErrorResult, NotFoundResult } from './errors';
 import { HttpStatusCode } from './http-status-codes';
 
 /**
@@ -33,8 +33,11 @@ export class ResponseBuilder {
   }
 
   private static _returnAs<T>(result: T, statusCode: number, callback: ApiCallback): void {
+    const bodyObject: ErrorResponseBody | T = result instanceof ErrorResult
+      ? { error: result }
+      : result;
     const response: ApiResponse = {
-      body: JSON.stringify(result),
+      body: JSON.stringify(bodyObject),
       statusCode
     };
 
