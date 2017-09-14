@@ -3,7 +3,7 @@ import { Chance } from 'chance';
 import { instance, mock, reset, when } from 'ts-mockito';
 
 import { ErrorResult, ForbiddenResult, NotFoundResult } from '../../shared/errors';
-import { GetCityResult } from './cities.interfaces';
+import { City, GetCityResult } from './cities.interfaces';
 import { CitiesRepository } from './cities.repository';
 import { CitiesService } from './cities.service';
 
@@ -15,32 +15,52 @@ describe('CitiesService', () => {
   const citiesRepositoryMock: CitiesRepository = mock(CitiesRepository);
   const citiesRepositoryMockInstance: CitiesRepository = instance(citiesRepositoryMock);
   let service: CitiesService;
+  let testCity: City;
 
   beforeEach(() => {
     reset(citiesRepositoryMock);
     service = new CitiesService(citiesRepositoryMockInstance, process.env);
+    testCity = {
+      country: chance.country(),
+      id: chance.natural(),
+      name: chance.city(),
+      populationDensity: chance.natural()
+    };
   });
 
   describe('getCity function', () => {
     it('should resolve with the input id', async () => {
-      const id: number = chance.natural();
-      when(citiesRepositoryMock.exists(id)).thenReturn(true);
-      when(citiesRepositoryMock.hasAccess(id)).thenReturn(true);
+      process.env.DEFAULT_COUNTRY = testCity.country;
+      when(citiesRepositoryMock.exists(testCity.id)).thenReturn(true);
+      when(citiesRepositoryMock.hasAccess(testCity.id)).thenReturn(true);
+      when(citiesRepositoryMock.getCity(testCity.id, testCity.country)).thenReturn(testCity);
 
-      const result: GetCityResult = await service.getCity(id);
-      expect(result.id).to.equal(id);
+      const result: GetCityResult = await service.getCity(testCity.id);
+      expect(result.city.id).to.equal(testCity.id);
     });
 
-    it('should resolve with the city from the environment variable', async () => {
-      const id: number = chance.natural();
-      when(citiesRepositoryMock.exists(id)).thenReturn(true);
-      when(citiesRepositoryMock.hasAccess(id)).thenReturn(true);
+    it('should resolve with the default country from the environment variable', async () => {
+      process.env.DEFAULT_COUNTRY = testCity.country;
+      when(citiesRepositoryMock.exists(testCity.id)).thenReturn(true);
+      when(citiesRepositoryMock.hasAccess(testCity.id)).thenReturn(true);
+      when(citiesRepositoryMock.getCity(testCity.id, testCity.country)).thenReturn(testCity);
 
-      const city: string = chance.city();
-      process.env.FAVORITE_CITY = city;
+      const result: GetCityResult = await service.getCity(testCity.id);
+      expect(result.city.country).to.equal(testCity.country);
+    });
 
-      const result: GetCityResult = await service.getCity(id);
-      expect(result.city).to.equal(city);
+    it('should resolve with the hard coded default country', async () => {
+      const hungarianTestCity: City = testCity;
+      hungarianTestCity.country = 'Hungary';
+
+      process.env.DEFAULT_COUNTRY = '';
+
+      when(citiesRepositoryMock.exists(testCity.id)).thenReturn(true);
+      when(citiesRepositoryMock.hasAccess(testCity.id)).thenReturn(true);
+      when(citiesRepositoryMock.getCity(testCity.id, testCity.country)).thenReturn(hungarianTestCity);
+
+      const result: GetCityResult = await service.getCity(testCity.id);
+      expect(result.city.country).to.equal(hungarianTestCity.country);
     });
 
     it('should reject for non-existing ID', () => {

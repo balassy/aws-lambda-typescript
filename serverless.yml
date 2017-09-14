@@ -22,7 +22,7 @@ functions:
     description: Returns a single city.
 
     environment:
-      FAVORITE_CITY: Budapest
+      DEFAULT_COUNTRY: Hungary
 
     events:
       - http:

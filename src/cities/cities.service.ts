@@ -1,5 +1,5 @@
 import { ForbiddenResult, NotFoundResult } from '../../shared/errors';
-import { GetCityResult } from './cities.interfaces';
+import { City, GetCityResult } from './cities.interfaces';
 import { CitiesRepository } from './cities.repository';
 
 export class CitiesService {
@@ -18,10 +18,10 @@ export class CitiesService {
         return;
       }
 
+      const defaultCountry: string = this._env.DEFAULT_COUNTRY || 'Hungary';
+      const city: City = this._repo.getCity(id, defaultCountry);
       const result: GetCityResult = {
-        city: this._env.FAVORITE_CITY,
-        id,
-        randomNumber: Math.random()
+        city
       };
 
       resolve(result);

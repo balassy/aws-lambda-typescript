@@ -8,7 +8,7 @@ import { HttpStatusCode } from '../../shared/http-status-codes';
 import { call } from '../../test';
 import { ApiResponseParsed, PathParameter } from '../../test/test.interfaces';
 import { CitiesController } from './cities.controller';
-import { GetCityResult } from './cities.interfaces';
+import { City, GetCityResult } from './cities.interfaces';
 import { CitiesService } from './cities.service';
 
 // tslint:disable no-unsafe-any (Generates false alarm with ts-mockito functions.)
@@ -20,11 +20,11 @@ describe('CitiesController', () => {
   let controller: CitiesController;
 
   interface TestData {
-    city: string;
-    code: string;
-    description: string;
-    id: number;
-    randomNumber: number;
+    city: City;
+    error: {
+      code: string;
+      description: string;
+    };
   }
   let testData: TestData;
 
@@ -33,54 +33,60 @@ describe('CitiesController', () => {
     const citiesServiceMockInstance: CitiesService = instance(citiesServiceMock);
     controller = new CitiesController(citiesServiceMockInstance);
     testData = {
-      city: chance.city(),
-      code: chance.word(),
-      description: chance.sentence(),
-      id: chance.natural(),
-      randomNumber: chance.natural()
+      city: {
+        country: chance.country(),
+        id: chance.natural(),
+        name: chance.city(),
+        populationDensity: chance.natural()
+      },
+      error: {
+        code: chance.word(),
+        description: chance.sentence()
+      }
     };
   });
 
   describe('getCity function', () => {
     describe('success', () => {
       it('should return HTTP 200 OK', async () => {
-        when(citiesServiceMock.getCity(testData.id)).thenReturn(Promise.resolve<GetCityResult>(testData));
+        when(citiesServiceMock.getCity(testData.city.id)).thenReturn(Promise.resolve<GetCityResult>(testData));
         const pathParameters: PathParameter = {
-          id: '' + testData.id
+          id: '' + testData.city.id
         };
         const response: ApiResponseParsed<GetCityResult> = await call<GetCityResult>(controller.getCity, pathParameters);
         expect(response.statusCode).to.equal(HttpStatusCode.Ok);
 
       });
 
-      it('should return the city and the ID from the service', async () => {
-        when(citiesServiceMock.getCity(testData.id)).thenReturn(Promise.resolve<GetCityResult>(testData));
+      it('should return the city properties from the service', async () => {
+        when(citiesServiceMock.getCity(testData.city.id)).thenReturn(Promise.resolve<GetCityResult>(testData));
         const pathParameters: PathParameter = {
-          id: '' + testData.id
+          id: '' + testData.city.id
         };
         const response: ApiResponseParsed<GetCityResult> = await call<GetCityResult>(controller.getCity, pathParameters);
-        expect(response.parsedBody.city).to.equal(testData.city);
-        expect(response.parsedBody.id).to.equal(testData.id);
+        expect(response.parsedBody.city.id).to.equal(testData.city.id);
+        expect(response.parsedBody.city.name).to.equal(testData.city.name);
+        expect(response.parsedBody.city.populationDensity).to.equal(testData.city.populationDensity);
       });
     });
 
     describe('service failures', () => {
       it('should return Forbidden for a city without permission', async () => {
-        const errorResult: ForbiddenResult = new ForbiddenResult(testData.code, testData.description);
-        when(citiesServiceMock.getCity(testData.id)).thenReturn(Promise.reject(errorResult));
-        await callAndCheckError('' + testData.id, HttpStatusCode.Forbidden, errorResult);
+        const errorResult: ForbiddenResult = new ForbiddenResult(testData.error.code, testData.error.description);
+        when(citiesServiceMock.getCity(testData.city.id)).thenReturn(Promise.reject(errorResult));
+        await callAndCheckError('' + testData.city.id, HttpStatusCode.Forbidden, errorResult);
       });
 
       it('should return Not Found for a non-existing city', async () => {
-        const errorResult: NotFoundResult = new NotFoundResult(testData.code, testData.description);
-        when(citiesServiceMock.getCity(testData.id)).thenReturn(Promise.reject(errorResult));
-        await callAndCheckError('' + testData.id, HttpStatusCode.NotFound, errorResult);
+        const errorResult: NotFoundResult = new NotFoundResult(testData.error.code, testData.error.description);
+        when(citiesServiceMock.getCity(testData.city.id)).thenReturn(Promise.reject(errorResult));
+        await callAndCheckError('' + testData.city.id, HttpStatusCode.NotFound, errorResult);
       });
 
       it('should return Internal Server Error for a service failure', async () => {
         const errorResult: InternalServerErrorResult = new InternalServerErrorResult(ErrorCode.GeneralError, 'Sorry...');
-        when(citiesServiceMock.getCity(testData.id)).thenReturn(Promise.reject(new Error()));
-        await callAndCheckError('' + testData.id, HttpStatusCode.InternalServerError, errorResult);
+        when(citiesServiceMock.getCity(testData.city.id)).thenReturn(Promise.reject(new Error()));
+        await callAndCheckError('' + testData.city.id, HttpStatusCode.InternalServerError, errorResult);
       });
     });
 
