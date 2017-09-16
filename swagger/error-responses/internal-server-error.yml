@@ -1,0 +1,4 @@
+statusCode: '500'
+description: Returned if an error occurred on the server during the processing of the request.
+responseModels:
+  "application/json": ErrorResponse

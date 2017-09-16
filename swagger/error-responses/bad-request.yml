@@ -1,0 +1,4 @@
+statusCode: '400'
+description: Returned if there is a format error in the request. Check the input parameters.
+responseModels:
+  "application/json": ErrorResponse

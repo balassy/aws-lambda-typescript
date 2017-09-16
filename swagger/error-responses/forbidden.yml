@@ -1,0 +1,4 @@
+statusCode: '403'
+description: Returned if the client has no permission to access the specified object, or perform the specified operation.
+responseModels:
+  "application/json": ErrorResponse

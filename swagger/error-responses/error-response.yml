@@ -1,0 +1,15 @@
+name: ErrorResponse
+contentType: "application/json"
+description: The content of the response body in case of an error occurs.
+schema:
+  type: object
+  properties:
+    error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: A machine-friendly string that identifies the type of error.
+        description:
+          type: string
+          description: A human-friendly description of the error.

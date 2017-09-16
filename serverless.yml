@@ -9,6 +9,7 @@ provider:
 plugins:
   - serverless-plugin-typescript
   - serverless-offline
+  - serverless-aws-documentation
 
 package:
   include:
@@ -28,7 +29,29 @@ functions:
       - http:
           path: cities/{id}
           method: get
+          cors: true
           request:
             parameters:
               paths:
                 id: true
+          documentation:
+            summary: Get a city.
+            tags:
+              - City
+            description: Returns the specified city.
+            pathParams:
+              - name: id
+                description: The unique identifier of the city to retrieve.
+            methodResponses:
+              - statusCode: '200'
+                description: Returned when the operation is completed successfully.
+                responseModels:
+                  "application/json": GetCityResponse
+              - ${file(./swagger/error-responses/bad-request.yml)}
+              - ${file(./swagger/error-responses/forbidden.yml)}
+              - ${file(./swagger/error-responses/not-found.yml)}
+              - ${file(./swagger/error-responses/internal-server-error.yml)}
+
+custom:
+  documentation: ${file(./swagger/documentation.yml)}
+    
