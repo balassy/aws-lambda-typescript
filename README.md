@@ -15,6 +15,21 @@ This sample uses the [Serverless Application Framework](https://serverless.com/)
 [![bitHound Dev Dependencies](https://www.bithound.io/github/balassy/aws-lambda-typescript/badges/devDependencies.svg)](https://www.bithound.io/github/balassy/aws-lambda-typescript/master/dependencies/npm)
 [![bitHound Code](https://www.bithound.io/github/balassy/aws-lambda-typescript/badges/code.svg)](https://www.bithound.io/github/balassy/aws-lambda-typescript)
 
+## Features
+
+- Full [TypeScript](https://www.typescriptlang.org/) codebase with strict type annotation - _get as many compile time errors as possible._
+- Deployment to AWS from the command line with [Serverless](https://serverless.com/) - _just run an npm script._
+- Automated builds with [Travis CI](https://travis-ci.org/) - _get early feedback for every change_.
+- Offline execution - _call your endpoints without deploying them to AWS._
+- Minimal IAM policy to follow the principle of least privilege - _because with great power comes great responsibility_.
+- Code analysis with [TSLint](https://palantir.github.io/tslint/) - _avoid dumb coding mistakes._
+- Unit testing with [Mocha](https://mochajs.org/), mocking with [ts-mockito](https://github.com/NagRock/ts-mockito) - _be free to change your implementation._
+- Test coverage report with [Istanbul](https://istanbul.js.org/) and [Coveralls](https://coveralls.io) - _so you know your weak spots._
+- [Swagger](https://swagger.io/) documentation for the endpoints - _the expected description of your API._
+- Multiple layers in the code to separate concerns and independently test them - _avoid monolith and complexity._
+- Dependency checks with [David](https://david-dm.org/) and [BitHound](https://www.bithound.io/) - _because the majority of your app is not your code._
+- Sample CRUD implementation (in progress) - _to see it all in action_.
+
 ## Setup
 
 1. **Install [Node.js](https://nodejs.org).**
