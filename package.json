@@ -35,6 +35,7 @@
     "@types/chance": "0.7.35",
     "@types/mocha": "2.2.43",
     "@types/node": "8.0.28",
+    "aws-sdk": "2.118.0",
     "chai": "4.1.2",
     "chance": "1.0.11",
     "coveralls": "2.13.1",

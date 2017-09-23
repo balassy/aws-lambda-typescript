@@ -5,6 +5,12 @@ provider:
   runtime: nodejs6.10
   stage: demo
   region: us-east-1
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "apigateway:GET"
+      Resource:
+        - "arn:aws:apigateway:${self:provider.region}::/restapis*"
 
 plugins:
   - serverless-plugin-typescript
@@ -18,6 +24,21 @@ package:
     - node_modules/**/*
 
 functions:
+  getSwaggerJson:
+    handler: src/swagger/swagger.getSwaggerJson
+    description: Returns the Swagger documentation of the API in JSON format.
+
+    environment:
+      REGION_NAME: ${self:provider.region}
+      REST_API_NAME: ${self:service}
+      STAGE_NAME: ${self:provider.stage}
+
+    events:
+      - http:
+          path: swagger.json
+          method: get
+          cors: true
+
   getCity:
     handler: src/cities/cities.getCity
     description: Returns a single city.

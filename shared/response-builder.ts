@@ -1,6 +1,6 @@
 import { ApiCallback, ApiResponse, ErrorResponseBody } from './api.interfaces';
 import { ErrorCode } from './error-codes';
-import { BadRequestResult, ErrorResult, ForbiddenResult, InternalServerErrorResult, NotFoundResult } from './errors';
+import { BadRequestResult, ConfigurationErrorResult, ErrorResult, ForbiddenResult, InternalServerErrorResult, NotFoundResult } from './errors';
 import { HttpStatusCode } from './http-status-codes';
 
 /**
@@ -12,12 +12,18 @@ export class ResponseBuilder {
     ResponseBuilder._returnAs<BadRequestResult>(errorResult, HttpStatusCode.BadRequest, callback);
   }
 
+  public static configurationError(code: string, description: string, callback: ApiCallback): void {
+    const errorResult: ConfigurationErrorResult = new ConfigurationErrorResult(code, description);
+    ResponseBuilder._returnAs<ConfigurationErrorResult>(errorResult, HttpStatusCode.ConfigurationError, callback);
+  }
+
   public static forbidden(code: string, description: string, callback: ApiCallback): void {
     const errorResult: ForbiddenResult = new ForbiddenResult(code, description);
     ResponseBuilder._returnAs<ForbiddenResult>(errorResult, HttpStatusCode.Forbidden, callback);
   }
 
   public static internalServerError(error: Error, callback: ApiCallback): void {
+    console.error('Internal Server Error', error); // tslint:disable-line no-console (Logging errors to CloudWatch.)
     // TODO: Implement stack trace logging.
     const errorResult: InternalServerErrorResult = new InternalServerErrorResult(ErrorCode.GeneralError, 'Sorry...');
     ResponseBuilder._returnAs<InternalServerErrorResult>(errorResult, HttpStatusCode.InternalServerError, callback);

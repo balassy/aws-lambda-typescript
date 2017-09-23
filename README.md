@@ -25,7 +25,7 @@ This sample uses the [Serverless Application Framework](https://serverless.com/)
 - Code analysis with [TSLint](https://palantir.github.io/tslint/) - _avoid dumb coding mistakes._
 - Unit testing with [Mocha](https://mochajs.org/), mocking with [ts-mockito](https://github.com/NagRock/ts-mockito) - _be free to change your implementation._
 - Test coverage report with [Istanbul](https://istanbul.js.org/) and [Coveralls](https://coveralls.io) - _so you know your weak spots._
-- [Swagger](https://swagger.io/) documentation for the endpoints - _the expected description of your API._
+- Generated [Swagger](https://swagger.io/) documentation for the endpoints - _the expected description of your API._
 - Multiple layers in the code to separate concerns and independently test them - _avoid monolith and complexity._
 - Dependency checks with [David](https://david-dm.org/) and [BitHound](https://www.bithound.io/) - _because the majority of your app is not your code._
 - Sample CRUD implementation (in progress) - _to see it all in action_.
@@ -80,6 +80,8 @@ service: serverless-lambda-typescript-example
 
 ## What you can find in the code
 
+### Example CORS endpoints
+
 This project shows an example Lambda function implementation with the following layers (see the `src/cities` folder):
 
 - **Handler**: The handler is the endpoint that is called by AWS when it executes your Lambda. See `cities.ts`.
@@ -95,6 +97,10 @@ Additional terms:
 - **Result**: The outcome of the service call. It can be a success result or an error result.
 
 To understand the code, open `src/cities/cities.ts`, find the `getCity` function and follow the call chain.
+
+### Swagger export
+
+The `src/swagger` folder contains the `/swagger.json` endpoint which exports the documentation of the API in [Swagger](https://swagger.io/) format. Call the endpoint after deploying your API and paste the response JSON into the [Swagger Editor](https://editor.swagger.io) to display it in a friendly way.
 
 ## Developer tasks
 
@@ -160,11 +166,15 @@ npm test
 
 The tests are automatically running before deployment, so you don't need to run them manually.
 
+### View the documentation
+
+To view the generated Swagger documentation, deploy your API or start it locally, and then call the `/swagger.json` endpoint.
+
 
 ## Problems?
 
 ```
-EPERM: operation not permitted, symlink 'C:\Git\lambda-typescript\node_modules' -> 'C:\Git\lambda-typescript\.build\node_modules'
+EPERM: operation not permitted, symlink 'C:\Git\aws-lambda-typescript\node_modules' -> 'C:\Git\aws-lambda-typescript\.build\node_modules'
 ```
 
 On Windows you need **Administrator privileges** to run `serverless` commands (see [Issue 23](https://github.com/graphcool/serverless-plugin-typescript/issues/23)).
