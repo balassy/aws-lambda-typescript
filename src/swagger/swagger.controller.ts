@@ -35,4 +35,3 @@ export class SwaggerController {
 // TODO:
 //       - move IAM role to lambda level
 //       - write tests
-//       - get title and version from the Swagger documentation file
