@@ -32,6 +32,8 @@ functions:
       REGION_NAME: ${self:provider.region}
       REST_API_NAME: ${self:service}
       STAGE_NAME: ${self:provider.stage}
+      API_INFO_VERSION: ${file(./swagger/documentation.yml):api.info.version}
+      API_INFO_TITLE: ${file(./swagger/documentation.yml):api.info.title}
 
     events:
       - http:

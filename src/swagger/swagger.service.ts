@@ -9,10 +9,6 @@ export class SwaggerService {
   }
 
   public getSwaggerDescription(): Promise<SwaggerDoc> {
-    if (!this._env.REGION_NAME) {
-      return Promise.reject(new ConfigurationErrorResult(ErrorCode.MissingEnv, 'The REGION_NAME environment variable is missing!'));
-    }
-
     if (!this._env.REST_API_NAME) {
       return Promise.reject(new ConfigurationErrorResult(ErrorCode.MissingEnv, 'The REST_API_NAME environment variable is missing!'));
     }
@@ -21,11 +17,18 @@ export class SwaggerService {
       return Promise.reject(new ConfigurationErrorResult(ErrorCode.MissingEnv, 'The STAGE_NAME environment variable is missing!'));
     }
 
+    if (!this._env.API_INFO_TITLE) {
+      return Promise.reject(new ConfigurationErrorResult(ErrorCode.MissingEnv, 'The API_INFO_TITLE environment variable is missing!'));
+    }
+
+    if (!this._env.API_INFO_VERSION) {
+      return Promise.reject(new ConfigurationErrorResult(ErrorCode.MissingEnv, 'The API_INFO_VERSION environment variable is missing!'));
+    }
+
     const restApiName: string = <string> this._env.REST_API_NAME;
     const stageName: string = <string> this._env.STAGE_NAME;
-
-    const title: string = 'AWS Lambda in TypeScript';
-    const version: string = 'v1';
+    const title: string = <string> this._env.API_INFO_TITLE;
+    const version: string = <string> this._env.API_INFO_VERSION;
 
     return this._repo.getRestApiId(stageName, restApiName)
       .then((restApiId: string) => {
