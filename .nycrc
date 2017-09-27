@@ -7,7 +7,8 @@
     "**/*.d.ts",
     "**/*.spec.ts",
     "**/*.interfaces.ts",
-    "src/cities/cities.ts"
+    "src/cities/cities.ts",
+    "src/swagger/swagger.ts"
   ],
   "extension": [
     ".ts"
