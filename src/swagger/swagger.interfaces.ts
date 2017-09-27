@@ -1,4 +1,4 @@
-export interface SwaggerDoc {
+export interface GetSwaggerResult {
   info: {
     title: string;
     version: string;

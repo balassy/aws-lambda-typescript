@@ -1,14 +1,14 @@
 import { AWSError } from 'aws-sdk';
 import { ErrorCode } from '../../shared/error-codes';
 import { ConfigurationErrorResult, ForbiddenResult, InternalServerErrorResult, NotFoundResult } from '../../shared/errors';
-import { SwaggerDoc } from './swagger.interfaces';
+import { GetSwaggerResult } from './swagger.interfaces';
 import { SwaggerRepository } from './swagger.repository';
 
 export class SwaggerService {
   public constructor(private _repo: SwaggerRepository, private _env: NodeJS.ProcessEnv) {
   }
 
-  public getSwaggerDescription(): Promise<SwaggerDoc> {
+  public getSwaggerDescription(): Promise<GetSwaggerResult> {
     if (!this._env.REST_API_NAME) {
       return Promise.reject(new ConfigurationErrorResult(ErrorCode.MissingEnv, 'The REST_API_NAME environment variable is missing!'));
     }
@@ -39,24 +39,24 @@ export class SwaggerService {
         return this._repo.getSwaggerDescription(restApiId, stageName);
       })
       .then((jsonDesc: string) => {
-        const doc: SwaggerDoc = <SwaggerDoc> JSON.parse(jsonDesc);
+        const result: GetSwaggerResult = <GetSwaggerResult> JSON.parse(jsonDesc);
 
         // Remove the /swagger.json path from the documentation.
-        delete doc.paths['/swagger.json'];
+        delete result.paths['/swagger.json'];
 
         // Remove the OPTIONS endpoints generated automatically because CORS is enabled.
-        for (const pathName in doc.paths) {
-          if (doc.paths[pathName].options) {
-              delete doc.paths[pathName].options;
+        for (const pathName in result.paths) {
+          if (result.paths[pathName].options) {
+              delete result.paths[pathName].options;
           }
         }
 
         // Update the 'info' properties in the header, because the API Gateway exports raw values instead of what is specified in the documentation.
         // This is a known issue with 'serverless-aws-documentation', read more in its README.
-        doc.info.title = title;
-        doc.info.version = version;
+        result.info.title = title;
+        result.info.version = version;
 
-        return doc;
+        return result;
       })
       .catch((error: AWSError | NotFoundResult) => {
         if (error.code === 'AccessDeniedException') {
