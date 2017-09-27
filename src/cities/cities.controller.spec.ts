@@ -55,7 +55,6 @@ describe('CitiesController', () => {
         };
         const response: ApiResponseParsed<GetCityResult> = await callSuccess<GetCityResult>(controller.getCity, pathParameters);
         expect(response.statusCode).to.equal(HttpStatusCode.Ok);
-
       });
 
       it('should return the city properties from the service', async () => {
