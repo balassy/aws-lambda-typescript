@@ -65,7 +65,7 @@ describe('SwaggerController', () => {
     });
 
     describe('service failures', () => {
-      it('should return Configuration Error for inproper configuration', async () => {
+      it('should return Configuration Error for improper configuration', async () => {
         const errorResult: ConfigurationErrorResult = new ConfigurationErrorResult(ErrorCode.GeneralError, 'Sorry...');
         when(swaggerServiceMock.getSwaggerDescription()).thenReturn(Promise.reject(errorResult));
         await callAndCheckError(HttpStatusCode.ConfigurationError, errorResult);

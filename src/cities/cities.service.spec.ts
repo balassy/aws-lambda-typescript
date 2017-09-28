@@ -84,7 +84,7 @@ describe('CitiesService', () => {
         });
     });
 
-    it('should reject if the repository call failes', () => {
+    it('should reject if the repository call fails', () => {
       const id: number = chance.natural();
       when(citiesRepositoryMock.exists(id)).thenThrow(new Error());
 
