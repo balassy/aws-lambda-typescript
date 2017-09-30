@@ -23,9 +23,6 @@ export class ResponseBuilder {
   }
 
   public static internalServerError(error: Error, callback: ApiCallback): void {
-    // TODO: Implement stack trace logging.
-    // TODO: console.error('Internal Server Error', error); // tslint:disable-line no-console (Logging errors to CloudWatch.)
-
     const errorResult: InternalServerErrorResult = new InternalServerErrorResult(ErrorCode.GeneralError, 'Sorry...');
     ResponseBuilder._returnAs<InternalServerErrorResult>(errorResult, HttpStatusCode.InternalServerError, callback);
   }
