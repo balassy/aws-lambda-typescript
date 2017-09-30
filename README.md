@@ -80,16 +80,16 @@ service: serverless-lambda-typescript-example
 
 ## What you can find in the code
 
-### Example CORS endpoints
+### Example CRUD endpoints
 
-This project shows an example Lambda function implementation with the following layers (see the `src/cities` folder):
+This project shows example Lambda function implementations with the following layers (see the `src/cities` folder):
 
 - **Handler**: The handler is the endpoint that is called by AWS when it executes your Lambda. See `cities.ts`.
 - **Controller**: The controller is responsible for transforming any operation result to an HTTP response. See `cities.controller.ts`.
 - **Service**: The service is responsible for implementing the business logic, and provide the operation result. See `cities.service.ts`.
 - **Repository**: The repository is responsible for providing the data for the service. See `cities.repository.ts`.
 
-ALl layers have unit tests mocking the underlying layers.
+All layers have unit tests with mocking the underlying layers.
 
 Additional terms:
 
