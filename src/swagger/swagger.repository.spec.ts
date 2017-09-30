@@ -14,13 +14,15 @@ describe('SwaggerRepository', () => {
     restApiId: string;
     restApiName: string;
     stageName: string;
+    swaggerDescription: string;
   };
 
   beforeEach(() => {
     testData = {
       restApiId: chance.word(),
       restApiName: chance.word(),
-      stageName: chance.word()
+      stageName: chance.word(),
+      swaggerDescription: chance.sentence()
     };
   });
 
@@ -65,7 +67,7 @@ describe('SwaggerRepository', () => {
       const errorMessage: string = chance.sentence();
       const error: AWSError = <AWSError> new Error(errorMessage);
       const restApis: APIGateway.RestApi[] = [];
-      createRepo(restApis, error);
+      createRepo(restApis, undefined, error);
 
       await repo.getRestApiId(testData.stageName, testData.restApiName)
         .catch((err: AWSError) => {
@@ -74,10 +76,35 @@ describe('SwaggerRepository', () => {
     });
   });
 
-  function createRepo(restApis: APIGateway.RestApi[], error?: AWSError): void {
-    // NOTE: Manual mocking is used here, because mocking of the types in the AWS SDK is tricky,
-    //       due to the fact that the SDK builds those objects dynamically based on a JSON definition.
+  describe('getSwaggerDescription function', () => {
+    it('should resolve with the Swagger description', async () => {
+      createRepo([], testData.swaggerDescription);
+
+      const swaggerDescription: string = await repo.getSwaggerDescription(testData.restApiId, testData.stageName);
+      expect(swaggerDescription).to.equal(testData.swaggerDescription);
+    });
+
+    it('should reject with the original AWS error', async () => {
+      const errorMessage: string = chance.sentence();
+      const error: AWSError = <AWSError> new Error(errorMessage);
+      createRepo([], testData.swaggerDescription, error);
+
+      await repo.getSwaggerDescription(testData.restApiId, testData.stageName)
+        .catch((err: AWSError) => {
+          expect(err.message).to.equal(errorMessage);
+        });
+    });
+  });
+
+  function createRepo(restApis: APIGateway.RestApi[], swaggerDescription?: string, error?: AWSError): void {
+    // NOTE: Manual mocking is used here, because mocking of the types in the AWS SDK is tricky, due to the fact that the SDK builds those objects dynamically based on a JSON definition.
     const apiGatewayMock: APIGateway = <APIGateway> {
+      getExport: (params: APIGateway.Types.GetExportRequest, callback: (error?: AWSError, data?: APIGateway.Types.ExportResponse) => void): void => {
+        const data: APIGateway.ExportResponse = {
+          body: swaggerDescription
+        };
+        callback(error, data);
+      },
       getRestApis: (callback: (error?: AWSError, data?: APIGateway.Types.RestApis) => void): void => {
         const data: APIGateway.RestApis = {
           items: restApis
