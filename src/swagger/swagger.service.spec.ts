@@ -45,12 +45,12 @@ describe('SwaggerService', () => {
             options: {},
             post: {}
           },
-          '/countries': {
+          '/continents': {
             get: {},
             options: {},
             post: {}
           },
-          '/continents': {
+          '/countries': {
             get: {}
           },
           '/swagger.json': {}
@@ -75,8 +75,9 @@ describe('SwaggerService', () => {
       expect(result.info.version).to.equal(testData.swaggerDoc.info.version);
       expect(result.paths['/cities'].get).to.not.be.undefined;
       expect(result.paths['/cities'].post).to.not.be.undefined;
+      expect(result.paths['/continents'].get).to.not.be.undefined;
+      expect(result.paths['/continents'].post).to.not.be.undefined;
       expect(result.paths['/countries'].get).to.not.be.undefined;
-      expect(result.paths['/countries'].post).to.not.be.undefined;
     });
 
     it('should resolve without the swagger.json endpoint', async () => {
