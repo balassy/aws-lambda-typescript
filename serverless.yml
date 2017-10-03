@@ -1,4 +1,4 @@
-service: serverless-lambda-typescript-example
+service: serverless-sample
 
 provider:
   name: aws
@@ -16,6 +16,7 @@ plugins:
   - serverless-plugin-typescript
   - serverless-offline
   - serverless-aws-documentation
+  - serverless-domain-manager
 
 package:
   include:
@@ -77,4 +78,10 @@ functions:
 
 custom:
   documentation: ${file(./swagger/documentation.yml)}
+  customDomain:
+    basePath: "api"
+    domainName: serverless-sample.balassy.me
+    certificateName: serverless-sample.balassy.me
+    stage: ${self:provider.stage}
+    createRoute53Record: true
     

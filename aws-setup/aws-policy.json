@@ -142,6 +142,34 @@
         "events:Describe*"
       ],
       "Resource": "arn:aws:events::<account_no>:rule/<service_name>*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+          "acm:ListCertificates"
+      ],
+      "Resource": "arn:aws:acm:<region>:<account_no>:certificate/*"
+    },
+    {
+        "Effect": "Allow",
+        "Action": [
+            "route53:ListHostedZones"
+        ],
+        "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+          "route53:ChangeResourceRecordSets"
+      ],
+      "Resource": "arn:aws:route53:::hostedzone/<hosted_zone_ID>/rrset"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+          "cloudfront:UpdateDistribution"
+      ],
+      "Resource": "*"
     }
   ]
 }

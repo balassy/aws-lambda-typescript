@@ -7,6 +7,7 @@ This sample uses the [Serverless Application Framework](https://serverless.com/)
 [![Coverage Status](https://coveralls.io/repos/github/balassy/aws-lambda-typescript/badge.svg)](https://coveralls.io/github/balassy/aws-lambda-typescript)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/balassy/aws-lambda-typescript/master/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/balassy/aws-lambda-typescript.svg)](https://github.com/balassy/aws-lambda-typescript/issues)
+[![Swagger Validator](https://img.shields.io/swagger/valid/2.0/https/serverless-sample.balassy.me/api/swagger.json.svg)](https://app.swaggerhub.com/apis/balassy/serverless-sample)
 
 [![Dependencies](https://david-dm.org/balassy/aws-lambda-typescript/status.svg)](https://david-dm.org/balassy/aws-lambda-typescript)
 [![DevDependencies](https://david-dm.org/balassy/aws-lambda-typescript/dev-status.svg)](https://david-dm.org/balassy/aws-lambda-typescript#type=dev)
@@ -19,13 +20,14 @@ This sample uses the [Serverless Application Framework](https://serverless.com/)
 
 - Full [TypeScript](https://www.typescriptlang.org/) codebase with strict type annotation - _get as many compile time errors as possible._
 - Deployment to AWS from the command line with [Serverless](https://serverless.com/) - _just run an npm script._
+- Publishing to your custom [Route53](https://aws.amazon.com/route53/) domain name - _for API URLs that live forever._
 - Automated builds with [Travis CI](https://travis-ci.org/) - _get early feedback for every change_.
 - Offline execution - _call your endpoints without deploying them to AWS._
 - Minimal IAM policy to follow the principle of least privilege - _because with great power comes great responsibility_.
 - Code analysis with [TSLint](https://palantir.github.io/tslint/) - _avoid dumb coding mistakes._
 - Unit testing with [Mocha](https://mochajs.org/), mocking with [ts-mockito](https://github.com/NagRock/ts-mockito) - _be free to change your implementation._
 - Test coverage report with [Istanbul](https://istanbul.js.org/) and [Coveralls](https://coveralls.io) - _so you know your weak spots._
-- Generated [Swagger](https://swagger.io/) documentation for the endpoints - _the expected description of your API._
+- Generated [Swagger](https://swagger.io/) documentation for the endpoints, which works well with [SwaggerHub](https://app.swaggerhub.com) - _the expected description of your API._
 - Multiple layers in the code to separate concerns and independently test them - _avoid monolith and complexity._
 - Dependency checks with [David](https://david-dm.org/) and [BitHound](https://www.bithound.io/) - _because the majority of your app is not your code._
 - Sample CRUD implementation (in progress) - _to see it all in action_.
@@ -75,8 +77,21 @@ npm install
 6. **Customize the name of your service** by changing the following line in the `serverless.yml` file:
 
 ```
-service: serverless-lambda-typescript-example
+service: serverless-sample
 ```
+
+7. **Customize the name of your domain** by changing the following lines in the `serverless.yml` file:
+
+```
+custom:
+  customDomain:
+    domainName: serverless-sample.balassy.me
+    certificateName: serverless-sample.balassy.me
+```
+
+**NOTE:** You must have the certificate created in [AWS Certificate Manager](https://aws.amazon.com/certificate-manager/) before executing this command. According to AWS to use an ACM certificate with API Gateway, you must [request or import the certificate](https://serverless.com/blog/serverless-api-gateway-domain/) in the US East (N. Virginia) region.
+
+If you don't want to publish your API to a custom domain, remove the `serverless-domain-manager` from the `plugins` section, and the `customDomains` entry from the `custom` section of the `serverless.yml` file.
 
 ## What you can find in the code
 
@@ -102,6 +117,8 @@ To understand the code, open `src/cities/cities.ts`, find the `getCity` function
 
 The `src/swagger` folder contains the `/swagger.json` endpoint which exports the documentation of the API in [Swagger](https://swagger.io/) format. Call the endpoint after deploying your API and paste the response JSON into the [Swagger Editor](https://editor.swagger.io) to display it in a friendly way.
 
+You can also reference the `swagger.json` URL when you publish your documentation via [SwaggerHub](https://app.swaggerhub.com), as you can see on the SwaggerHub page of this sample: https://app.swaggerhub.com/apis/balassy/serverless-sample.
+
 ## Developer tasks
 
 ### Test the service locally
@@ -124,6 +141,14 @@ You can modify your code after running this command, Serverless will automatical
 
 ### Deploy to AWS
 
+**To create a custom domain for your service in AWS, run this command once:** _This command requires Administrator privileges on Windows!_
+
+```bash
+npm run deploy:init
+```
+
+According to AWS, after this command it may take up to 40 minutes to initialize the domain with a CloudFront distribution. In practice it usually takes about 10 minutes.
+
 **To deploy the service to AWS, run:** _This command requires Administrator privileges on Windows!_
 
 ```bash
@@ -137,6 +162,12 @@ npm run deploy
 ```
 
 Verify that the deployment is completed successfully by opening the URL displayed in your console window in your browser. To see all resources created in AWS navigate to CloudFormation in the AWS Console and look for the stack named with the name of your service you specified in Step 6.
+
+**To download the Swagger description** of your service, open the following URL in your browser:
+
+```
+https://<your_custom_domain_name>/api/swagger.json
+```
 
 If you don't want to deploy your code, just want to peek into the deployment package, you can run:
 
