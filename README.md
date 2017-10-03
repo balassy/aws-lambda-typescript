@@ -23,10 +23,10 @@ This sample uses the [Serverless Application Framework](https://serverless.com/)
 - Full [TypeScript](https://www.typescriptlang.org/) codebase with strict type annotation - _get as many compile time errors as possible._
 - Deployment to AWS from the command line with [Serverless](https://serverless.com/) - _just run an npm script._
 - Publishing to your custom [Route53](https://aws.amazon.com/route53/) domain name - _for API URLs that live forever._
-- Automated builds with [Travis CI](https://travis-ci.org/) - _get early feedback for every change_.
+- Automated builds and CI with [Travis CI](https://travis-ci.org/balassy/aws-lambda-typescript) on Linux and [AppVeyor](https://ci.appveyor.com/project/balassy/aws-lambda-typescript) on Windows - _get early feedback for every change_.
 - Offline execution - _call your endpoints without deploying them to AWS._
 - Minimal IAM policy to follow the principle of least privilege - _because with great power comes great responsibility_.
-- Code analysis with [TSLint](https://palantir.github.io/tslint/) - _avoid dumb coding mistakes._
+- Code analysis with [TSLint](https://palantir.github.io/tslint/) and [Codebeat](https://codebeat.co/projects/github-com-balassy-aws-lambda-typescript-master) - _avoid dumb coding mistakes._
 - Unit testing with [Mocha](https://mochajs.org/), mocking with [ts-mockito](https://github.com/NagRock/ts-mockito) - _be free to change your implementation._
 - Test coverage report with [Istanbul](https://istanbul.js.org/) and [Coveralls](https://coveralls.io) - _so you know your weak spots._
 - Generated [Swagger](https://swagger.io/) documentation for the endpoints, which works well with [SwaggerHub](https://app.swaggerhub.com) - _the expected description of your API._
