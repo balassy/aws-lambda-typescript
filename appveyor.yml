@@ -20,6 +20,9 @@ shallow_clone: true
 
 build_script:
   - npm run build
-  - npm run coverage
+
+artifacts:
+  - path: .serverless
+    name: Serverless Package
 
 test: off
