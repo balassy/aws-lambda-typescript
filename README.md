@@ -15,6 +15,7 @@ This sample uses the [Serverless Application Framework](https://serverless.com/)
 [![bitHound Dependencies](https://www.bithound.io/github/balassy/aws-lambda-typescript/badges/dependencies.svg)](https://www.bithound.io/github/balassy/aws-lambda-typescript/master/dependencies/npm)
 [![bitHound Dev Dependencies](https://www.bithound.io/github/balassy/aws-lambda-typescript/badges/devDependencies.svg)](https://www.bithound.io/github/balassy/aws-lambda-typescript/master/dependencies/npm)
 [![bitHound Code](https://www.bithound.io/github/balassy/aws-lambda-typescript/badges/code.svg)](https://www.bithound.io/github/balassy/aws-lambda-typescript)
+[![codebeat badge](https://codebeat.co/badges/cd3e0118-3d7f-4c0d-8d27-14d05df5a356)](https://codebeat.co/projects/github-com-balassy-aws-lambda-typescript-master)
 
 ## Features
 
