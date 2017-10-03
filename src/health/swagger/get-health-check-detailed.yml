@@ -1,0 +1,11 @@
+name: GetHealthCheckDetailed
+contentType: "application/json"
+schema:
+  type: object
+  properties:
+    success:
+      type: boolean
+      description: Returns true if the health check has found everything all right on the server.
+    requestId:
+      type: string
+      description: Returns the unique identifier of the incoming HTTP request.

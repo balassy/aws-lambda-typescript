@@ -29,6 +29,7 @@ This sample uses the [Serverless Application Framework](https://serverless.com/)
 - Test coverage report with [Istanbul](https://istanbul.js.org/) and [Coveralls](https://coveralls.io) - _so you know your weak spots._
 - Generated [Swagger](https://swagger.io/) documentation for the endpoints, which works well with [SwaggerHub](https://app.swaggerhub.com) - _the expected description of your API._
 - Multiple layers in the code to separate concerns and independently test them - _avoid monolith and complexity._
+- Health check endpoints - _to quickly test your service._
 - Dependency checks with [David](https://david-dm.org/) and [BitHound](https://www.bithound.io/) - _because the majority of your app is not your code._
 - Sample CRUD implementation (in progress) - _to see it all in action_.
 
@@ -119,6 +120,10 @@ The `src/swagger` folder contains the `/swagger.json` endpoint which exports the
 
 You can also reference the `swagger.json` URL when you publish your documentation via [SwaggerHub](https://app.swaggerhub.com), as you can see on the SwaggerHub page of this sample: https://app.swaggerhub.com/apis/balassy/serverless-sample.
 
+### Health check endpoints
+
+The `/health/check` and the `/health/check/detailed` endpoints in the `src/health` folder are provided to run quick checks on your API after deployment.
+
 ## Developer tasks
 
 ### Test the service locally
@@ -168,6 +173,8 @@ Verify that the deployment is completed successfully by opening the URL displaye
 ```
 https://<your_custom_domain_name>/api/swagger.json
 ```
+
+Note that this endpoint always downloads the Swagger documentation from the live, published API, even if the code is running locally!
 
 If you don't want to deploy your code, just want to peek into the deployment package, you can run:
 

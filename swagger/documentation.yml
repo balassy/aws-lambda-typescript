@@ -12,6 +12,10 @@ api:
   tags:
     - name: City
       description: Manipulate cities.
+    - name: Health
+      description: Health check.
 models:
   - ${file(./swagger/error-responses/error-response.yml)}
   - ${file(./src/cities/swagger/get-city-response.yml)}
+  - ${file(./src/health/swagger/get-health-check.yml)}
+  - ${file(./src/health/swagger/get-health-check-detailed.yml)}
