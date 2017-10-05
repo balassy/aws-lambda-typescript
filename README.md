@@ -33,6 +33,7 @@ This sample uses the [Serverless Application Framework](https://serverless.com/)
 - Multiple layers in the code to separate concerns and independently test them - _avoid monolith and complexity._
 - Health check endpoints - _to quickly test your service._
 - Dependency checks with [David](https://david-dm.org/) and [BitHound](https://www.bithound.io/) - _because the majority of your app is not your code._
+- [EditorConfig](http://editorconfig.org/) settings - _for consistent coding styles between different editors._
 - Sample CRUD implementation (in progress) - _to see it all in action_.
 
 ## Setup
@@ -64,7 +65,7 @@ serverless -v
   ```bash
   serverless config credentials --provider aws --key YOUR_ACCESS_KEY --secret YOUR_SECRET_KEY
   ```
-  
+
   _Unfortunately on Windows you will need an Administrator user to run the Serverless CLI._
 
   You can read more about setting up AWS Credentials on the [AWS - Credentials page](https://serverless.com/framework/docs/providers/aws/guide/credentials/) of the Serverless Guide.
