@@ -29,6 +29,7 @@ This sample uses the [Serverless Application Framework](https://serverless.com/)
 - Code analysis with [TSLint](https://palantir.github.io/tslint/) and [Codebeat](https://codebeat.co/projects/github-com-balassy-aws-lambda-typescript-master) - _avoid dumb coding mistakes._
 - Unit testing with [Mocha](https://mochajs.org/), mocking with [ts-mockito](https://github.com/NagRock/ts-mockito) - _be free to change your implementation._
 - Test coverage report with [Istanbul](https://istanbul.js.org/) and [Coveralls](https://coveralls.io) - _so you know your weak spots._
+- Integration testing after release - _to verify your deployment._
 - Generated [Swagger](https://swagger.io/) documentation for the endpoints, which works well with [SwaggerHub](https://app.swaggerhub.com) - _the expected description of your API._
 - Multiple layers in the code to separate concerns and independently test them - _avoid monolith and complexity._
 - Health check endpoints - _to quickly test your service._
@@ -163,7 +164,7 @@ According to AWS, after this command it may take up to 40 minutes to initialize 
 serverless deploy
 ```
 
-or you can use the NPM script alias, which is recommended, because it runs the analysers (linter + tests) before deployment:
+or you can use the NPM script alias, which is recommended, because it runs the analysers (linter + tests) before deployment, and integration tests after deployment:
 
 ```bash
 npm run deploy
@@ -205,7 +206,17 @@ The linter automatically checks your code before deployment, so you don't need t
 npm test
 ```
 
-The tests are automatically running before deployment, so you don't need to run them manually.
+The unit tests are automatically running before deployment, so you don't need to run them manually.
+
+### Run integration tests
+
+**To verify that your deployment completed successfully, run:**
+
+```
+npm run test:integration
+```
+
+The integration tests are automatically running after deployment, so you don't need to run them manually.
 
 ### View the documentation
 
