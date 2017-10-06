@@ -130,6 +130,25 @@ The `/health/check` and the `/health/check/detailed` endpoints in the `src/healt
 
 ## Developer tasks
 
+Frequently used `npm script`s:
+
+| Script name   | Description                                                                                                         |
+|---------------|---------------------------------------------------------------------------------------------------------------------|
+| `analyse`     | Runs all code analysis tools, including linters and unit tests.                                                     |
+| `deploy`      | Runs all analysis tools, creates the deployment package, installs it on AWS and finally runs the integration tests. |
+| `start`       | Runs the service locally, so you can call your API endpoints on http://localhost.                                   |
+
+Additional useful `npm script`s:
+
+| Script name        | Description                                                                                                                     |
+|--------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| `build`            | Runs all pre-deploy analysis and creates the deployment package, but does not install it onto AWS.                              |
+| `clean`            | Removes all tool-generated files and folders (build output, coverage report etc.). Automatically runs as part of other scripts. |
+| `deploy:init`      | Creates the domain in Route53. Required to manually execute once.                                                               |
+| `lint`             | Runs the static code analyzers. Automatically runs before deployment.                                                           |
+| `test`             | Runs the unit tests. Automatically runs before deployment.                                                                      |
+| `test:integration` | Runs the integration tests. Automatically runs after deployment.                                                                |
+
 ### Test the service locally
 
 **To invoke the Lambda function locally, run:** _This command requires Administrator privileges on Windows!_
