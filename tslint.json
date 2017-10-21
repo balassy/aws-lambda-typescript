@@ -7,18 +7,20 @@
     "max-line-length": [true, 300],
     "newline-before-return": false,
     "no-angle-bracket-type-assertion": false,
+    "no-implicit-dependencies": [true, "dev"],
     "no-inferrable-types": false,
     "no-object-literal-type-assertion": false,
     "no-parameter-properties": false,
-    "no-void-expression": false,
+    "no-unnecessary-class": ["allow-static-only"],
     "no-use-before-declare": false,
+    "no-void-expression": false,
     "only-arrow-functions": false,
     "prefer-template": [true, "allow-single-concat"],
     "promise-function-async": false,
     "quotemark": [true, "single"],
     "restrict-plus-operands": false,
     "strict-boolean-expressions": false,
-    "trailing-comma": "never",
+    "trailing-comma": false,
     "variable-name": [true,"check-format", "allow-leading-underscore"]
   }
 }
