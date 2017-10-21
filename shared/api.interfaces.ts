@@ -1,4 +1,4 @@
-import { APIGatewayEvent, Context, ProxyCallback, ProxyHandler, ProxyResult } from 'aws-lambda';
+import { APIGatewayEvent, Context, ProxyCallback, ProxyHandler, ProxyResult } from 'aws-lambda';  // tslint:disable-line no-implicit-dependencies (Using only the type information from the @types package.)
 import { ErrorResult } from './errors';
 
 // Type aliases to hide the 'aws-lambda' package and have consistent, short naming.
