@@ -1,7 +1,5 @@
 # AWS Lambda in TypeScript
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/balassy/aws-lambda-typescript.svg)](https://greenkeeper.io/)
-
 This sample uses the [Serverless Application Framework](https://serverless.com/) to implement an AWS Lambda function in TypeScript, deploy it via CloudFormation, and publish it through API Gateway.
 
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
@@ -18,7 +16,9 @@ This sample uses the [Serverless Application Framework](https://serverless.com/)
 [![bitHound Dependencies](https://www.bithound.io/github/balassy/aws-lambda-typescript/badges/dependencies.svg)](https://www.bithound.io/github/balassy/aws-lambda-typescript/master/dependencies/npm)
 [![bitHound Dev Dependencies](https://www.bithound.io/github/balassy/aws-lambda-typescript/badges/devDependencies.svg)](https://www.bithound.io/github/balassy/aws-lambda-typescript/master/dependencies/npm)
 [![bitHound Code](https://www.bithound.io/github/balassy/aws-lambda-typescript/badges/code.svg)](https://www.bithound.io/github/balassy/aws-lambda-typescript)
-[![codebeat badge](https://codebeat.co/badges/cd3e0118-3d7f-4c0d-8d27-14d05df5a356)](https://codebeat.co/projects/github-com-balassy-aws-lambda-typescript-master)
+[![codebeat badge](https://codebeat.co/badges/cd3e0118-3d7f-4c0d-8d27-14d05df5a356)]
+(https://codebeat.co/projects/github-com-balassy-aws-lambda-typescript-master)
+[![Greenkeeper badge](https://badges.greenkeeper.io/balassy/aws-lambda-typescript.svg)](https://greenkeeper.io/)
 
 ## Features
 
@@ -35,7 +35,7 @@ This sample uses the [Serverless Application Framework](https://serverless.com/)
 - Generated **[Swagger](https://swagger.io/) documentation** for the endpoints, which works well with [SwaggerHub](https://app.swaggerhub.com) - _the expected description of your API._
 - Multiple layers in the code to **separate concerns** and independently test them - _avoid monolith and complexity._
 - **Health check** endpoints - _to quickly test your service._
-- **Dependency checks** with [David](https://david-dm.org/) and [BitHound](https://www.bithound.io/) - _because the majority of your app is not your code._
+- **Dependency checks** and continuous update with [David](https://david-dm.org/), [BitHound](https://www.bithound.io/) and [Greenkeeper](https://greenkeeper.io/) - _because the majority of your app is not your code._
 - **[EditorConfig](http://editorconfig.org/)** settings - _for consistent coding styles between different editors._
 - Sample CRUD implementation (in progress) - _to see it all in action_.
 
