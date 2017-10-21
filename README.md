@@ -1,5 +1,7 @@
 # AWS Lambda in TypeScript
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/balassy/aws-lambda-typescript.svg)](https://greenkeeper.io/)
+
 This sample uses the [Serverless Application Framework](https://serverless.com/) to implement an AWS Lambda function in TypeScript, deploy it via CloudFormation, and publish it through API Gateway.
 
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
