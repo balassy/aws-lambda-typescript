@@ -42,7 +42,7 @@
     "@types/request-promise-native": "1.0.8",
     "aws-sdk": "2.139.0",
     "chai": "4.1.2",
-    "chance": "1.0.11",
+    "chance": "1.0.12",
     "coveralls": "3.0.0",
     "mocha": "4.0.1",
     "nyc": "11.2.1",
