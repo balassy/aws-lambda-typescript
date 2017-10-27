@@ -39,7 +39,7 @@
     "@types/mocha": "2.2.44",
     "@types/node": "8.0.47",
     "@types/request": "2.0.6",
-    "@types/request-promise-native": "1.0.8",
+    "@types/request-promise-native": "1.0.9",
     "aws-sdk": "2.139.0",
     "chai": "4.1.2",
     "chance": "1.0.12",
