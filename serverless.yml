@@ -17,6 +17,7 @@ plugins:
   - serverless-offline
   - serverless-aws-documentation
   - serverless-domain-manager
+  - serverless-stack-output
 
 package:
   include:
@@ -126,4 +127,5 @@ custom:
     certificateName: serverless-sample.balassy.me
     stage: ${self:provider.stage}
     createRoute53Record: true
-    
+  output:
+    file: .serverless/output.json
