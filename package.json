@@ -40,7 +40,7 @@
     "@types/node": "8.0.47",
     "@types/request": "2.0.7",
     "@types/request-promise-native": "1.0.9",
-    "aws-sdk": "2.142.0",
+    "aws-sdk": "2.143.0",
     "chai": "4.1.2",
     "chance": "1.0.12",
     "coveralls": "3.0.0",
