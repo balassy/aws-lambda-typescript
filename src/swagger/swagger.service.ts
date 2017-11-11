@@ -31,7 +31,7 @@ export class SwaggerService {
     const version: string = <string> this._env.API_INFO_VERSION;
 
     return this._repo.getRestApiId(stageName, restApiName)
-      .then((restApiId: string) => {
+      .then((restApiId: string | undefined) => {
         if (!restApiId) {
           throw new NotFoundResult(ErrorCode.InvalidName, 'Cannot find the API with the specified name!');
         }

@@ -68,7 +68,7 @@ describe('HealthController', () => {
           };
         }
 
-        handler(event, <ApiContext> {}, (error?: Error, result?: ApiResponse): void => {
+        handler(event, <ApiContext> {}, (error?: Error | null, result?: ApiResponse): void => {
           if (typeof result === 'undefined') {
             reject('No result was returned by the handler!');
             return;
