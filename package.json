@@ -35,7 +35,7 @@
   "devDependencies": {
     "@types/aws-lambda": "^0.0.33",
     "@types/chai": "^4.0.4",
-    "@types/chance": "^0.7.35",
+    "@types/chance": "^1.0.0",
     "@types/mocha": "^2.2.44",
     "@types/node": "^9.3.0",
     "@types/request": "^2.0.8",
