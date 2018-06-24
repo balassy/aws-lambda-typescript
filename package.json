@@ -45,17 +45,17 @@
     "chance": "^1.0.12",
     "coveralls": "^3.0.0",
     "mocha": "^5.0.0",
-    "nyc": "^11.3.0",
+    "nyc": "^12.0.2",
     "request-promise-native": "^1.0.5",
     "rimraf": "^2.6.2",
     "serverless-aws-documentation": "^1.0.0",
     "serverless-domain-manager": "2.4.0",
-    "serverless-offline": "^3.16.0",
+    "serverless-offline": "^3.25.4",
     "serverless-plugin-typescript": "^1.1.3",
     "serverless-stack-output": "^0.2.0",
     "source-map-support": "^0.5.0",
     "ts-mockito": "^2.2.5",
-    "ts-node": "^6.0.0",
+    "ts-node": "^7.0.0",
     "tslint": "^5.8.0"
   }
 }
