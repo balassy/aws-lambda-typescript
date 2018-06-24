@@ -45,7 +45,7 @@
     "chance": "^1.0.12",
     "coveralls": "^3.0.0",
     "mocha": "^5.0.0",
-    "nyc": "^11.3.0",
+    "nyc": "^12.0.2",
     "request-promise-native": "^1.0.5",
     "rimraf": "^2.6.2",
     "serverless-aws-documentation": "^1.0.0",
