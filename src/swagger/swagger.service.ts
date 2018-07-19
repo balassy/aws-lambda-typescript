@@ -25,10 +25,12 @@ export class SwaggerService {
       return Promise.reject(new ConfigurationErrorResult(ErrorCode.MissingEnv, 'The API_INFO_VERSION environment variable is missing!'));
     }
 
+    /* tslint:disable:no-unnecessary-type-assertion - False positive */
     const restApiName: string = <string> this._env.REST_API_NAME;
     const stageName: string = <string> this._env.STAGE_NAME;
     const title: string = <string> this._env.API_INFO_TITLE;
     const version: string = <string> this._env.API_INFO_VERSION;
+    /* tslint:enable:no-unnecessary-type-assertion */
 
     return this._repo.getRestApiId(stageName, restApiName)
       .then((restApiId: string | undefined) => {
