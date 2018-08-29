@@ -10,6 +10,7 @@ This sample uses the [Serverless Application Framework](https://serverless.com/)
 [![GitHub issues](https://img.shields.io/github/issues/balassy/aws-lambda-typescript.svg)](https://github.com/balassy/aws-lambda-typescript/issues)
 [![Swagger Validator](https://img.shields.io/swagger/valid/2.0/https/serverless-sample.balassy.me/api/swagger.json.svg)](https://app.swaggerhub.com/apis/balassy/serverless-sample)
 
+[![Known Vulnerabilities](https://snyk.io/test/github/balassy/aws-lambda-typescript/badge.svg?targetFile=package.json)](https://snyk.io/test/github/balassy/aws-lambda-typescript?targetFile=package.json)
 [![Dependencies](https://david-dm.org/balassy/aws-lambda-typescript/status.svg)](https://david-dm.org/balassy/aws-lambda-typescript)
 [![DevDependencies](https://david-dm.org/balassy/aws-lambda-typescript/dev-status.svg)](https://david-dm.org/balassy/aws-lambda-typescript#type=dev)
 [![codebeat badge](https://codebeat.co/badges/cd3e0118-3d7f-4c0d-8d27-14d05df5a356)](https://codebeat.co/projects/github-com-balassy-aws-lambda-typescript-master)
@@ -30,7 +31,7 @@ This sample uses the [Serverless Application Framework](https://serverless.com/)
 - Generated **[Swagger](https://swagger.io/) documentation** for the endpoints, which works well with [SwaggerHub](https://app.swaggerhub.com) - _the expected description of your API._
 - Multiple layers in the code to **separate concerns** and independently test them - _avoid monolith and complexity._
 - **Health check** endpoints - _to quickly test your service._
-- **Dependency checks** and continuous update with [David](https://david-dm.org/) and [Greenkeeper](https://greenkeeper.io/) - _because the majority of your app is not your code._
+- **Dependency checks** and continuous update with [David](https://david-dm.org/), [Greenkeeper](https://greenkeeper.io/) and [Snyk](https://snyk.io)- _because the majority of your app is not your code._
 - **[EditorConfig](http://editorconfig.org/)** settings - _for consistent coding styles between different editors._
 - Sample CRUD implementation (in progress) - _to see it all in action_.
 
