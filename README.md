@@ -35,6 +35,7 @@ This sample uses the [Serverless Application Framework](https://serverless.com/)
 - **Dependency checks** and continuous update with [David](https://david-dm.org/), [Greenkeeper](https://greenkeeper.io/) and [Snyk](https://snyk.io)- _because the majority of your app is not your code._
 - **[EditorConfig](http://editorconfig.org/)** settings - _for consistent coding styles between different editors._
 - Sample CRUD implementation (in progress) - _to see it all in action_.
+- Follows Linux Foundation Core Infrastructure Initiative **[Best Practices](https://bestpractices.coreinfrastructure.org/en)** - _for the open source community._
 
 For updates, please check the [CHANGELOG](https://github.com/balassy/aws-lambda-typescript/blob/master/CHANGELOG.md).
 
