@@ -15,6 +15,7 @@ This sample uses the [Serverless Application Framework](https://serverless.com/)
 [![DevDependencies](https://david-dm.org/balassy/aws-lambda-typescript/dev-status.svg)](https://david-dm.org/balassy/aws-lambda-typescript#type=dev)
 [![codebeat badge](https://codebeat.co/badges/cd3e0118-3d7f-4c0d-8d27-14d05df5a356)](https://codebeat.co/projects/github-com-balassy-aws-lambda-typescript-master)
 [![Greenkeeper badge](https://badges.greenkeeper.io/balassy/aws-lambda-typescript.svg)](https://greenkeeper.io/)
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/2154/badge)](https://bestpractices.coreinfrastructure.org/projects/2154)
 
 ## Features
 
@@ -34,6 +35,9 @@ This sample uses the [Serverless Application Framework](https://serverless.com/)
 - **Dependency checks** and continuous update with [David](https://david-dm.org/), [Greenkeeper](https://greenkeeper.io/) and [Snyk](https://snyk.io)- _because the majority of your app is not your code._
 - **[EditorConfig](http://editorconfig.org/)** settings - _for consistent coding styles between different editors._
 - Sample CRUD implementation (in progress) - _to see it all in action_.
+- Follows Linux Foundation Core Infrastructure Initiative **[Best Practices](https://bestpractices.coreinfrastructure.org/en)** - _for the open source community._
+
+For updates, please check the [CHANGELOG](https://github.com/balassy/aws-lambda-typescript/blob/master/CHANGELOG.md).
 
 ## Setup
 
@@ -257,7 +261,6 @@ Your feedback is more than welcome, please send your suggestions, feature reques
 Contributions of all kinds are welcome, please feel free to send Pull Requests. As they are requirements of successful build all linters and tests MUST pass, and also please make sure you have a reasonable code coverage for new code.
 
 Thanks for your help in making this project better!
-
 
 ## Read more
 
