@@ -248,6 +248,17 @@ EPERM: operation not permitted, symlink 'C:\Git\aws-lambda-typescript\node_modul
 
 On Windows you need **Administrator privileges** to run `serverless` commands (see [Issue 23](https://github.com/graphcool/serverless-plugin-typescript/issues/23)).
 
+## Got feedback?
+
+Your feedback is more than welcome, please send your suggestions, feature requests or bug reports as [Github issues](https://github.com/balassy/aws-lambda-typescript/issues).
+
+## Contributing guidelines
+
+Contributions of all kinds are welcome, please feel free to send Pull Requests. As they are requirements of successful build all linters and tests MUST pass, and also please make sure you have a reasonable code coverage for new code.
+
+Thanks for your help in making this project better!
+
+
 ## Read more
 
 * [Serverless.yml Reference](https://serverless.com/framework/docs/providers/aws/guide/serverless.yml/)
