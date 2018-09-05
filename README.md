@@ -35,6 +35,8 @@ This sample uses the [Serverless Application Framework](https://serverless.com/)
 - **[EditorConfig](http://editorconfig.org/)** settings - _for consistent coding styles between different editors._
 - Sample CRUD implementation (in progress) - _to see it all in action_.
 
+For updates, please check the [CHANGELOG](https://github.com/balassy/aws-lambda-typescript/blob/master/CHANGELOG.md).
+
 ## Setup
 
 1. **Install [Node.js](https://nodejs.org).**
@@ -257,7 +259,6 @@ Your feedback is more than welcome, please send your suggestions, feature reques
 Contributions of all kinds are welcome, please feel free to send Pull Requests. As they are requirements of successful build all linters and tests MUST pass, and also please make sure you have a reasonable code coverage for new code.
 
 Thanks for your help in making this project better!
-
 
 ## Read more
 
