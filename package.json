@@ -1,6 +1,6 @@
 {
   "name": "lambda-typescript",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A sample to create AWS Lambda functions in TypeScript with Serverless.",
   "main": "handler.js",
   "scripts": {
@@ -40,7 +40,7 @@
     "@types/node": "^10.0.7",
     "@types/request": "^2.0.8",
     "@types/request-promise-native": "^1.0.10",
-    "aws-sdk": "^2.277.1",
+    "aws-sdk": "^2.312.0",
     "chai": "^4.1.2",
     "chance": "^1.0.12",
     "coveralls": "^3.0.2",
