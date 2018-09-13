@@ -49,7 +49,7 @@
     "request-promise-native": "^1.0.5",
     "rimraf": "^2.6.2",
     "serverless-aws-documentation": "^1.0.0",
-    "serverless-domain-manager": "2.6.0",
+    "serverless-domain-manager": "2.6.5",
     "serverless-offline": "^3.25.6",
     "serverless-plugin-typescript": "^1.1.5",
     "serverless-stack-output": "^0.2.0",
