@@ -5,7 +5,7 @@ import { GetSwaggerResult } from './swagger.interfaces';
 import { SwaggerRepository } from './swagger.repository';
 
 export class SwaggerService {
-  public constructor(private _repo: SwaggerRepository, private _env: NodeJS.ProcessEnv) {
+  public constructor(private readonly _repo: SwaggerRepository, private readonly _env: NodeJS.ProcessEnv) {
   }
 
   public getSwaggerDescription(): Promise<GetSwaggerResult> {

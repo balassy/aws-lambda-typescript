@@ -1,7 +1,7 @@
 import { APIGateway, AWSError } from 'aws-sdk';
 
 export class SwaggerRepository {
-  public constructor(private _apigw: APIGateway) {
+  public constructor(private readonly _apigw: APIGateway) {
   }
 
   public getRestApiId(stageName: string, apiName: string): Promise<string | undefined> {

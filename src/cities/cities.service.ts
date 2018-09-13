@@ -3,7 +3,7 @@ import { City, GetCityResult } from './cities.interfaces';
 import { CitiesRepository } from './cities.repository';
 
 export class CitiesService {
-  public constructor(private _repo: CitiesRepository, private _env: NodeJS.ProcessEnv) {
+  public constructor(private readonly _repo: CitiesRepository, private readonly _env: NodeJS.ProcessEnv) {
   }
 
   public getCity(id: number): Promise<GetCityResult> {
