@@ -1,11 +1,14 @@
 {
   "extends": "tslint:all",
   "rules": {
+    "await-promise": [true, "RequestPromise"],
     "completed-docs": false,
+    "file-name-casing": [true, "kebab-case"],
     "interface-name": [true, "never-prefix"],
     "linebreak-style": false,
     "max-line-length": [true, 300],
     "newline-before-return": false,
+    "newline-per-chained-call": false,
     "no-angle-bracket-type-assertion": false,
     "no-implicit-dependencies": [true, "dev"],
     "no-inferrable-types": false,

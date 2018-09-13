@@ -6,7 +6,7 @@ import { GetCityResult } from './cities.interfaces';
 import { CitiesService } from './cities.service';
 
 export class CitiesController {
-  public constructor(private _service: CitiesService) {
+  public constructor(private readonly _service: CitiesService) {
   }
 
   public getCity: ApiHandler = (event: ApiEvent, context: ApiContext, callback: ApiCallback): void => {

@@ -5,7 +5,7 @@ import { GetSwaggerResult } from './swagger.interfaces';
 import { SwaggerService } from './swagger.service';
 
 export class SwaggerController {
-  public constructor(private _service: SwaggerService) {
+  public constructor(private readonly _service: SwaggerService) {
   }
 
   public getSwaggerJson: ApiHandler = (event: ApiEvent, context: ApiContext, callback: ApiCallback): void => {
