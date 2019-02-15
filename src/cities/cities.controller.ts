@@ -21,11 +21,9 @@ export class CitiesController {
 
     const id: number = +event.pathParameters.id;
     try {
-      const result:GetCityResult = await this._service.getCity(id);
-      return ResponseBuilder.ok<GetCityResult>(result, callback);  // tslint:disable-line arrow-return-shorthand
-      
-    }
-      catch(error)  {
+      const result: GetCityResult = await this._service.getCity(id);
+      return ResponseBuilder.ok<GetCityResult>(result, callback);
+    } catch (error) {
         if (error instanceof NotFoundResult) {
           return ResponseBuilder.notFound(error.code, error.description, callback);
         }
@@ -34,7 +32,7 @@ export class CitiesController {
           return ResponseBuilder.forbidden(error.code, error.description, callback);
         }
 
-        return ResponseBuilder.internalServerError(error, callback);
+       return ResponseBuilder.internalServerError(error, callback); // tslint:disable-line 
       }
   }
 }
