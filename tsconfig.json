@@ -5,6 +5,7 @@
     "lib": [ 
       "es6"
     ],
+    "outDir": "./dist/out-tsc",
     "moduleResolution": "node",
     "rootDir": "./",
     "sourceMap": true,

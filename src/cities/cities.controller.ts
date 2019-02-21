@@ -1,4 +1,4 @@
-import { ApiContext, ApiEvent, ApiHandler } from '../../shared/api.interfaces';
+import { ApiContext, ApiEvent } from '../../shared/api.interfaces';
 import { ErrorCode } from '../../shared/error-codes';
 import { ForbiddenResult, NotFoundResult } from '../../shared/errors';
 import { ResponseBuilder } from '../../shared/response-builder';
@@ -10,7 +10,7 @@ export class CitiesController {
   public constructor(private readonly _service: CitiesService) {
   }
 
-  public getCity: ApiHandler = async (event: ApiEvent, context: ApiContext): Promise<APIGatewayProxyResult> => {
+  public getCity = async (event: ApiEvent, context: ApiContext): Promise<APIGatewayProxyResult> => {
     // Input validation.
     if (!event.pathParameters || !event.pathParameters.id) {
       return ResponseBuilder.badRequest(ErrorCode.MissingId, 'Please specify the city ID!');

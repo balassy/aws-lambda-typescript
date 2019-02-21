@@ -5,13 +5,12 @@ import { instance, mock, reset, when } from 'ts-mockito';
 import { ErrorCode } from '../../shared/error-codes';
 import { BadRequestResult, ErrorResult, ForbiddenResult, InternalServerErrorResult, NotFoundResult } from '../../shared/errors';
 import { HttpStatusCode } from '../../shared/http-status-codes';
-import { callFailure, callSuccess } from '../../test';
 import { ApiErrorResponseParsed, ApiResponseParsed, PathParameter } from '../../test/test.interfaces';
 import { CitiesController } from './cities.controller';
 import { City, GetCityResult } from './cities.interfaces';
 import { CitiesService } from './cities.service';
-import { ApiContext,ApiResponse } from '../../shared/api.interfaces';
-import { APIGatewayEvent } from 'aws-lambda';  // tslint:disable-line no-implicit-dependencies (Using only the type information from the @types package.)
+import { ApiContext, ErrorResponseBody } from '../../shared/api.interfaces';
+import { APIGatewayEvent, APIGatewayProxyResult } from 'aws-lambda';  // tslint:disable-line no-implicit-dependencies (Using only the type information from the @types package.)
 
 // tslint:disable no-unsafe-any (Generates false alarm with ts-mockito functions.)
 
@@ -59,12 +58,11 @@ describe('CitiesController', () => {
         if (pathParameters) {
           event.pathParameters = pathParameters;
         }
-        const result:any = await controller.getCity(event,<ApiContext> {},(error?: Error | null | string, result?: ApiResponse): void => {});
+        const result:APIGatewayProxyResult = await controller.getCity(event,<ApiContext> {});
         
         const parsedResult: ApiResponseParsed<GetCityResult> = result as ApiResponseParsed<GetCityResult>;
         parsedResult.parsedBody = JSON.parse(result.body) as GetCityResult;
   
-        //const response: ApiResponseParsed<GetCityResult> = await callSuccess<GetCityResult>(controller.getCity, pathParameters);
         expect(parsedResult.statusCode).to.equal(HttpStatusCode.Ok);
       });
 
@@ -73,7 +71,14 @@ describe('CitiesController', () => {
         const pathParameters: PathParameter = {
           id: '' + testData.city.id
         };
-        const response: ApiResponseParsed<GetCityResult> = await callSuccess<GetCityResult>(controller.getCity, pathParameters);
+        const event: APIGatewayEvent = <APIGatewayEvent> {};
+        if (pathParameters) {
+          event.pathParameters = pathParameters;
+        }
+        const result:APIGatewayProxyResult = await controller.getCity(event,<ApiContext> {});
+        
+        const response: ApiResponseParsed<GetCityResult> = result as ApiResponseParsed<GetCityResult>;
+        response.parsedBody = JSON.parse(result.body) as GetCityResult;
         expect(response.parsedBody.city.id).to.equal(testData.city.id);
         expect(response.parsedBody.city.name).to.equal(testData.city.name);
         expect(response.parsedBody.city.populationDensity).to.equal(testData.city.populationDensity);
@@ -116,7 +121,16 @@ describe('CitiesController', () => {
       const pathParameters: PathParameter = {
         id
       };
-      const response: ApiErrorResponseParsed = await callFailure(controller.getCity, pathParameters);
+      const event: APIGatewayEvent = <APIGatewayEvent> {};
+      if (pathParameters) {
+        event.pathParameters = pathParameters;
+      }
+
+      const result:APIGatewayProxyResult = await controller.getCity(event,<ApiContext> {});
+      const response: ApiErrorResponseParsed = result as ApiErrorResponseParsed;
+      response.parsedBody = JSON.parse(result.body) as ErrorResponseBody;
+
+     // const response: ApiErrorResponseParsed = await callFailure(controller.getCity, pathParameters);
       expect(response.statusCode).to.equal(expectedHttpStatusCode);
 
       expect(response.parsedBody.error.code).to.equal(errorResult.code);
