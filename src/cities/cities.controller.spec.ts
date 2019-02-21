@@ -130,7 +130,6 @@ describe('CitiesController', () => {
       const response: ApiErrorResponseParsed = result as ApiErrorResponseParsed;
       response.parsedBody = JSON.parse(result.body) as ErrorResponseBody;
 
-     // const response: ApiErrorResponseParsed = await callFailure(controller.getCity, pathParameters);
       expect(response.statusCode).to.equal(expectedHttpStatusCode);
 
       expect(response.parsedBody.error.code).to.equal(errorResult.code);
