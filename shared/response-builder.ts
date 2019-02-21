@@ -1,4 +1,4 @@
-import { ApiCallback, ApiResponse, ErrorResponseBody } from './api.interfaces';
+import {  ApiResponse, ErrorResponseBody } from './api.interfaces';
 import { ErrorCode } from './error-codes';
 import { BadRequestResult, ConfigurationErrorResult, ErrorResult, ForbiddenResult, InternalServerErrorResult, NotFoundResult } from './errors';
 import { HttpStatusCode } from './http-status-codes';
@@ -7,36 +7,36 @@ import { HttpStatusCode } from './http-status-codes';
  * Contains helper methods to generate a HTTP response.
  */
 export class ResponseBuilder {
-  public static badRequest(code: string, description: string, callback: ApiCallback): void {
+  public static badRequest(code: string, description: string): ApiResponse {
     const errorResult: BadRequestResult = new BadRequestResult(code, description);
-    ResponseBuilder._returnAs<BadRequestResult>(errorResult, HttpStatusCode.BadRequest, callback);
+    return ResponseBuilder._returnAs<BadRequestResult>(errorResult, HttpStatusCode.BadRequest);
   }
 
-  public static configurationError(code: string, description: string, callback: ApiCallback): void {
+  public static configurationError(code: string, description: string): ApiResponse {
     const errorResult: ConfigurationErrorResult = new ConfigurationErrorResult(code, description);
-    ResponseBuilder._returnAs<ConfigurationErrorResult>(errorResult, HttpStatusCode.ConfigurationError, callback);
+    return ResponseBuilder._returnAs<ConfigurationErrorResult>(errorResult, HttpStatusCode.ConfigurationError);
   }
 
-  public static forbidden(code: string, description: string, callback: ApiCallback): void {
+  public static forbidden(code: string, description: string): ApiResponse {
     const errorResult: ForbiddenResult = new ForbiddenResult(code, description);
-    ResponseBuilder._returnAs<ForbiddenResult>(errorResult, HttpStatusCode.Forbidden, callback);
+    return ResponseBuilder._returnAs<ForbiddenResult>(errorResult, HttpStatusCode.Forbidden);
   }
 
-  public static internalServerError(error: Error, callback: ApiCallback): void {
+  public static internalServerError(error: Error): ApiResponse {
     const errorResult: InternalServerErrorResult = new InternalServerErrorResult(ErrorCode.GeneralError, 'Sorry...');
-    ResponseBuilder._returnAs<InternalServerErrorResult>(errorResult, HttpStatusCode.InternalServerError, callback);
+    return ResponseBuilder._returnAs<InternalServerErrorResult>(errorResult, HttpStatusCode.InternalServerError);
   }
 
-  public static notFound(code: string, description: string, callback: ApiCallback): void {
+  public static notFound(code: string, description: string): ApiResponse {
     const errorResult: NotFoundResult = new NotFoundResult(code, description);
-    ResponseBuilder._returnAs<NotFoundResult>(errorResult, HttpStatusCode.NotFound, callback);
+    return ResponseBuilder._returnAs<NotFoundResult>(errorResult, HttpStatusCode.NotFound);
   }
 
-  public static ok<T>(result: T, callback: ApiCallback): void {
-    ResponseBuilder._returnAs<T>(result, HttpStatusCode.Ok, callback);
+  public static ok<T>(result: T): ApiResponse {
+    return ResponseBuilder._returnAs<T>(result, HttpStatusCode.Ok);
   }
 
-  private static _returnAs<T>(result: T, statusCode: number, callback: ApiCallback): void {
+  private static _returnAs<T>(result: T, statusCode: number): ApiResponse {
     const bodyObject: ErrorResponseBody | T = result instanceof ErrorResult
       ? { error: result }
       : result;
@@ -48,6 +48,6 @@ export class ResponseBuilder {
       statusCode
     };
 
-    callback(undefined, response);
+    return response;
   }
 }

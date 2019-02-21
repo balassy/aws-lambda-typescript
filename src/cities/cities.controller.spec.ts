@@ -10,6 +10,8 @@ import { ApiErrorResponseParsed, ApiResponseParsed, PathParameter } from '../../
 import { CitiesController } from './cities.controller';
 import { City, GetCityResult } from './cities.interfaces';
 import { CitiesService } from './cities.service';
+import { ApiContext,ApiResponse } from '../../shared/api.interfaces';
+import { APIGatewayEvent } from 'aws-lambda';  // tslint:disable-line no-implicit-dependencies (Using only the type information from the @types package.)
 
 // tslint:disable no-unsafe-any (Generates false alarm with ts-mockito functions.)
 
@@ -53,8 +55,17 @@ describe('CitiesController', () => {
         const pathParameters: PathParameter = {
           id: '' + testData.city.id
         };
-        const response: ApiResponseParsed<GetCityResult> = await callSuccess<GetCityResult>(controller.getCity, pathParameters);
-        expect(response.statusCode).to.equal(HttpStatusCode.Ok);
+        const event: APIGatewayEvent = <APIGatewayEvent> {};
+        if (pathParameters) {
+          event.pathParameters = pathParameters;
+        }
+        const result:any = await controller.getCity(event,<ApiContext> {},(error?: Error | null | string, result?: ApiResponse): void => {});
+        
+        const parsedResult: ApiResponseParsed<GetCityResult> = result as ApiResponseParsed<GetCityResult>;
+        parsedResult.parsedBody = JSON.parse(result.body) as GetCityResult;
+  
+        //const response: ApiResponseParsed<GetCityResult> = await callSuccess<GetCityResult>(controller.getCity, pathParameters);
+        expect(parsedResult.statusCode).to.equal(HttpStatusCode.Ok);
       });
 
       it('should return the city properties from the service', async () => {

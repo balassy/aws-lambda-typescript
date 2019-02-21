@@ -1,38 +1,39 @@
-import { ApiCallback, ApiContext, ApiEvent, ApiHandler } from '../../shared/api.interfaces';
+import { ApiContext, ApiEvent, ApiHandler } from '../../shared/api.interfaces';
 import { ErrorCode } from '../../shared/error-codes';
-import {  ForbiddenResult, NotFoundResult } from '../../shared/errors';
+import { ForbiddenResult, NotFoundResult } from '../../shared/errors';
 import { ResponseBuilder } from '../../shared/response-builder';
 import { GetCityResult } from './cities.interfaces';
 import { CitiesService } from './cities.service';
+import { APIGatewayProxyResult } from 'aws-lambda'; // tslint:disable-line
 
 export class CitiesController {
   public constructor(private readonly _service: CitiesService) {
   }
 
-  public getCity: ApiHandler = async (event: ApiEvent, context: ApiContext, callback: ApiCallback): Promise<void> => {
+  public getCity: ApiHandler = async (event: ApiEvent, context: ApiContext): Promise<APIGatewayProxyResult> => {
     // Input validation.
     if (!event.pathParameters || !event.pathParameters.id) {
-      return ResponseBuilder.badRequest(ErrorCode.MissingId, 'Please specify the city ID!', callback);
+      return ResponseBuilder.badRequest(ErrorCode.MissingId, 'Please specify the city ID!');
     }
 
     if (isNaN(+event.pathParameters.id)) {
-      return ResponseBuilder.badRequest(ErrorCode.InvalidId, 'The city ID must be a number!', callback);
+      return ResponseBuilder.badRequest(ErrorCode.InvalidId, 'The city ID must be a number!');
     }
 
     const id: number = +event.pathParameters.id;
     try {
       const result: GetCityResult = await this._service.getCity(id);
-      return ResponseBuilder.ok<GetCityResult>(result, callback);
+      return ResponseBuilder.ok<GetCityResult>(result);
     } catch (error) {
-        if (error instanceof NotFoundResult) {
-          return ResponseBuilder.notFound(error.code, error.description, callback);
-        }
-
-        if (error instanceof ForbiddenResult) {
-          return ResponseBuilder.forbidden(error.code, error.description, callback);
-        }
-
-       return ResponseBuilder.internalServerError(error, callback); // tslint:disable-line 
+      if (error instanceof NotFoundResult) {
+        return ResponseBuilder.notFound(error.code, error.description);
       }
+
+      if (error instanceof ForbiddenResult) {
+        return ResponseBuilder.forbidden(error.code, error.description);
+      }
+
+      return ResponseBuilder.internalServerError(error); // tslint:disable-line 
+    }
   }
 }
