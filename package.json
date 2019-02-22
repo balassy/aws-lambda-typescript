@@ -1,6 +1,6 @@
 {
   "name": "lambda-typescript",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A sample to create AWS Lambda functions in TypeScript with Serverless.",
   "main": "handler.js",
   "scripts": {
@@ -16,8 +16,8 @@
     "lint": "tslint --project . --format verbose",
     "start": "serverless offline start",
     "pretest": "npm run clean",
-    "test": "nyc mocha",
-    "test:integration": "mocha --opts ./test/integration/mocha.opts"
+    "test": "nyc mocha --config ./test/.mocharc.yml",
+    "test:integration": "mocha --config ./test/integration/.mocharc.yml"
   },
   "keywords": [
     "aws",
@@ -44,8 +44,8 @@
     "chai": "^4.1.2",
     "chance": "^1.0.18",
     "coveralls": "^3.0.2",
-    "mocha": "^5.2.0",
-    "nyc": "^13.1.0",
+    "mocha": "^6.0.1",
+    "nyc": "^13.3.0",
     "request-promise-native": "^1.0.5",
     "rimraf": "^2.6.2",
     "serverless-aws-documentation": "^1.1.0",
@@ -55,7 +55,7 @@
     "serverless-stack-output": "^0.2.3",
     "source-map-support": "^0.5.9",
     "ts-mockito": "^2.3.1",
-    "ts-node": "^7.0.1",
+    "ts-node": "^8.0.2",
     "tslint": "^5.11.0"
   }
 }

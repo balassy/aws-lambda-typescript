@@ -1,0 +1,6 @@
+require:
+  - ts-node/register
+  - source-map-support/register
+recursive: true
+full-trace: true
+spec: src/**/*.spec.ts
