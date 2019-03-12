@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## [3.0.1]
+
+This is a maintenance release to fix security vulnerabilities [CVE-2018-16487](https://nvd.nist.gov/vuln/detail/CVE-2018-16487) and [CVE-2018-16492](https://nvd.nist.gov/vuln/detail/CVE-2018-16492) in the `lodash` and `extend` dependencies. These packages are used only to build this module, so the functionality of this module should not be affected by this change at all.
+
 ## [3.0.0]
 
 - BREAKING CHANGE: The `mocha` dependency is updated to `^6.0.1`, also the related `nyc` and `ts-node` packages are updated to their latest version. Due to a [bug](https://github.com/mochajs/mocha/issues/3763) in mocha the `mocha.opts` files are needed to be moved to the new `yml` format.

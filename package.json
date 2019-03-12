@@ -1,6 +1,6 @@
 {
   "name": "lambda-typescript",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A sample to create AWS Lambda functions in TypeScript with Serverless.",
   "main": "handler.js",
   "scripts": {
