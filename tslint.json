@@ -18,6 +18,7 @@
     "no-use-before-declare": false,
     "no-void-expression": false,
     "only-arrow-functions": false,
+    "ordered-imports": [true, { "grouped-imports": false }],
     "prefer-template": [true, "allow-single-concat"],
     "promise-function-async": false,
     "quotemark": [true, "single"],
