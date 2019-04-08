@@ -37,7 +37,7 @@
     "@types/chai": "^4.1.7",
     "@types/chance": "^1.0.1",
     "@types/mocha": "^5.2.6",
-    "@types/node": "^11.11.6",
+    "@types/node": "^11.13.2",
     "@types/request": "^2.48.1",
     "@types/request-promise-native": "^1.0.15",
     "aws-sdk": "^2.419.0",
