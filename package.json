@@ -51,7 +51,7 @@
     "serverless-aws-documentation": "^1.1.0",
     "serverless-domain-manager": "^3.2.2",
     "serverless-offline": "^5.0.0",
-    "serverless-plugin-typescript": "^1.1.7",
+    "serverless-plugin-typescript": "^1.1.9",
     "serverless-stack-output": "^0.2.3",
     "source-map-support": "^0.5.12",
     "ts-mockito": "^2.3.1",
