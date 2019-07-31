@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## [3.0.3]
+
+This is a maintenance release that fixes security vulnerabilities in [lodash](https://www.npmjs.com/advisories/1065), [set-value](https://www.npmjs.com/advisories/1012) and [mixin-deep](https://www.npmjs.com/advisories/1013) developer dependencies.
+
 ## [3.0.2]
 
 This is a maintenance release to update all third party development dependencies to the latest version. The functionality of the module is not affected by this change.
