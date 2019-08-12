@@ -2,9 +2,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
-    "lib": [ 
-      "es6"
-    ],
+    "lib": ["es6"],
     "moduleResolution": "node",
     "rootDir": "./",
     "sourceMap": true,
@@ -19,8 +17,5 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true
   },
-  "exclude": [ 
-    "node_modules",
-    "coverage"
-   ]
+  "exclude": ["node_modules", "coverage"]
 }
