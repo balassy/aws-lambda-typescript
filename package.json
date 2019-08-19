@@ -50,7 +50,7 @@
     "rimraf": "^3.0.0",
     "serverless-aws-documentation": "^1.1.0",
     "serverless-domain-manager": "^3.2.2",
-    "serverless-offline": "^5.0.0",
+    "serverless-offline": "^5.10.1",
     "serverless-plugin-typescript": "^1.1.9",
     "serverless-stack-output": "^0.2.3",
     "source-map-support": "^0.5.12",
