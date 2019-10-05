@@ -6,13 +6,13 @@ node_js:
 
 before_install:
   - npm install -g serverless
-  - npm install -g greenkeeper-lockfile@1
+#   - npm install -g greenkeeper-lockfile@1
 
-before_script:
-  - greenkeeper-lockfile-update
+# before_script:
+#   - greenkeeper-lockfile-update
 
-after_script:
-  - greenkeeper-lockfile-upload
+# after_script:
+#   - greenkeeper-lockfile-upload
 
 after_success:
   - npm run coverage

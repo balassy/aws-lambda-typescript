@@ -14,7 +14,6 @@ This sample uses the [Serverless Application Framework](https://serverless.com/)
 [![Dependencies](https://david-dm.org/balassy/aws-lambda-typescript/status.svg)](https://david-dm.org/balassy/aws-lambda-typescript)
 [![DevDependencies](https://david-dm.org/balassy/aws-lambda-typescript/dev-status.svg)](https://david-dm.org/balassy/aws-lambda-typescript#type=dev)
 [![codebeat badge](https://codebeat.co/badges/cd3e0118-3d7f-4c0d-8d27-14d05df5a356)](https://codebeat.co/projects/github-com-balassy-aws-lambda-typescript-master)
-[![Greenkeeper badge](https://badges.greenkeeper.io/balassy/aws-lambda-typescript.svg)](https://greenkeeper.io/)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/2154/badge)](https://bestpractices.coreinfrastructure.org/projects/2154)
 
 ## Features
@@ -32,7 +31,7 @@ This sample uses the [Serverless Application Framework](https://serverless.com/)
 - Generated **[Swagger](https://swagger.io/) documentation** for the endpoints, which works well with [SwaggerHub](https://app.swaggerhub.com) - _the expected description of your API._
 - Multiple layers in the code to **separate concerns** and independently test them - _avoid monolith and complexity._
 - **Health check** endpoints - _to quickly test your service._
-- **Dependency checks** and continuous update with [David](https://david-dm.org/), [Greenkeeper](https://greenkeeper.io/) and [Snyk](https://snyk.io)- _because the majority of your app is not your code._
+- **Dependency checks** with [David](https://david-dm.org/) and [Snyk](https://snyk.io) - _because the majority of your app is not your code._
 - **[EditorConfig](http://editorconfig.org/)** settings - _for consistent coding styles between different editors._
 - Sample CRUD implementation (in progress) - _to see it all in action_.
 - Follows Linux Foundation Core Infrastructure Initiative **[Best Practices](https://bestpractices.coreinfrastructure.org/en)** - _for the open source community._
@@ -273,4 +272,4 @@ Thanks to Shovon Hasan for his article on [Deploying a TypeScript + Node AWS Lam
 
 ## About the author
 
-This project is maintaned by [György Balássy](https://linkedin.com/in/balassy).
+This project was created by [György Balássy](https://linkedin.com/in/balassy).
