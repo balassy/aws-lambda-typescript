@@ -2,6 +2,8 @@
 
 This sample uses the [Serverless Application Framework](https://serverless.com/) to implement an AWS Lambda function in TypeScript, deploy it via CloudFormation, and publish it through API Gateway.
 
+> **IMPORTANT!** Since I am not working on any AWS Lambda project at the moment I temporarily suspended the maintenance of this project, because I cannot closely follow the evolution of the platform and validate that this project is still working and useful. I recently turned off Greenkeeper, because it often submitted broken PRs that failed on CI, and checking and fixing those took more time than I can spend on this project. I still believe that this sample has value and I am planning to update it for my next Lambda project. Thanks for understanding.
+
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
 [![Linux Build Status](https://travis-ci.org/balassy/aws-lambda-typescript.svg?branch=master)](https://travis-ci.org/balassy/aws-lambda-typescript)
 [![Windows Build status](https://ci.appveyor.com/api/projects/status/cuo6yvampkiids7i/branch/master?svg=true)](https://ci.appveyor.com/project/balassy/aws-lambda-typescript/branch/master)
